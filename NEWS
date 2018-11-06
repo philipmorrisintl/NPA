@@ -1,0 +1,7 @@
+#####################################################################
+## Copyright 2018 Philip Morris Products, S.A.
+## Quai Jeanrenaud 5, 2000 Neuchatel, Switzerland
+#####################################################################
+
+0.99.0 Sylvain Gubian  <DL.RSupport@pmi.com>
+    *Initial Bioconductor version of the NPA package

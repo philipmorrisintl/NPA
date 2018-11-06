@@ -1,0 +1,88 @@
+Package: NPA
+Type: Package
+Title: Network Perturbation Amplitude
+Version: 0.99.0
+Date: 2018-01-29
+Author: Florian Martin <Florian.Martin@pmi.com>, Sylvain Gubian
+    <Sylvain.Gubian@pmi.com>
+Maintainer: Sylvain Gubian <DL.RSupport@pmi.com>
+Depends:
+    R (>= 3.2.2),
+    R6
+Imports:
+    ggplot2,
+    plotrix,
+    apcluster,
+    gplots,
+    RColorBrewer,
+    RGraph2js,
+    reshape2,
+    stringr,
+    methods,
+    scales,
+    graph,
+    Rgraphviz,
+    dnet,
+    NPAModels
+Description: Scoring method of Biological Networks based on NPA (Network
+    Perturbation Amplitude) algorithm. The methodology implemented enables
+    to translate the gene expression fold-changes into differential values
+    for each network node, and to summarize this at the network level to
+    provide a quantitative assessment of the degree of perturbation of the
+    network model, the Network Perturbation Amplitude (NPA).
+    Combining multiple relevant network models, the overall biological impact
+    (BIF) of a perturbing agent, the Biological Impact Factor, can be
+    calculated by aggregating individual NPA scores.
+License: file LICENSE
+LazyLoad: yes
+RoxygenNote: 6.0.1
+Collate:
+    'BIF-class.R'
+    'COPD1.R'
+    'utils.R'
+    'computeNPA.R'
+    'colorscale.R'
+    'getNPALE.R'
+    'getNPAmodulesGlobal.R'
+    'NPA-class.R'
+    'NPA.R'
+    'imageplot_gg.R'
+    'extract_npas.R'
+    'getBIF.R'
+    'NPAList-class.R'
+    'NPAallrename.R'
+    'NPAheatmap.R'
+    'NPAsubset.R'
+    'getNPALEtable2.R'
+    'as.matrix.R'
+    'starplot.R'
+    'barplotBIF.R'
+    'barplotNPAGG.R'
+    'barplotNPA.R'
+    'barplotNPA3.R'
+    'barplot.R'
+    'drawNPAjs.R'
+    'visNet2.R'
+    'drawNPAmodule.R'
+    'getBIF0weighted.R'
+    'getBIFdist.R'
+    'getC.R'
+    'getLE.R'
+    'getsplit.R'
+    'getNPAmodules.R'
+    'getNPAnames.R'
+    'getNets.R'
+    'getNets1.R'
+    'getNets2.R'
+    'getWeightedBIF.R'
+    'onLoad.R'
+    'starplotBIFnetworks.R'
+    'starplotBIFcontrasts.R'
+    'plot.R'
+    'plotNPAmodulesGlobal.R'
+    'subset.R'
+Suggests:
+    knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
