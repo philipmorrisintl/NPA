@@ -60,9 +60,9 @@ NPAList$set("public", "subset", function(indi, indj) {
   if (!is.null(indj)) {
     if (max(indj) > length(private$data[[1]]$coefficients)) {
       stop(paste0(
-        "Given column indices are exceeding number of comparisons"))
+        "Given comparison indices are exceeding number of comparisons"))
     }
-    data <- lapply(private$data, function(np) NPAsubset(np, indj))
+    data <- lapply(data, function(np) NPAsubset(np, indj))
   }
   return(invisible(NPAList$new(data, private$species)))
 })
