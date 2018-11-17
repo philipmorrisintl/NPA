@@ -70,7 +70,7 @@ extractNPA2 <- function(npall0, which = 1:length(npall0[[1]]$coefficients), prop
     CFsc <- apply(CF, 2, function(x) x/max(x, na.rm = TRUE))
   } else {
     CF <- sapply(NP, function(np0) {
-      mx <- getMaxNPA(np0, type = "smoothed")
+      mx <- getMaxNPA(np0)
       l2norm.basckbonescores <- colSums(np0$nodes.coefficients[, which0]^2)
       max.npa <- mx$value/np0$networkSize * l2norm.basckbonescores
       return(np0$coefficients[which0]/max.npa)
