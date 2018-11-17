@@ -163,7 +163,7 @@ NPA$set("public", "summary", function() {
 #==============================================================================
 # Method: modules
 #==============================================================================
-#' Compute sbu-graphs for dense leading nodes regions.
+#' Compute sub-graphs for dense leading nodes regions.
 #' @exportMethod modules
 #' @param x NPA R6 class instance
 #' @param alpha A numerical value, scale the negative score of the non leading
