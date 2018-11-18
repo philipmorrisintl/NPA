@@ -250,7 +250,7 @@ plot(npa, type = 'heatmap')
 The _graph_ option draws a graph figure that represents the network backbone. In each node, a barplot is displayed
 showing the coefficient value for each comparison.
 
-```{r eval=TRUE, fig.align='center'}
+```{r eval=FALSE, fig.align='center'}
 plot(npa, type = 'graph')
 ```
 
@@ -267,7 +267,7 @@ Modules are network sub-graphs that are dense in leading nodes across
 all comparisons. In order to plot modules, modules should be first
 retrived by calling the **modules** method on a **NPA** object.
 
-```{r eval=TRUE, echo=TRUE}
+```{r eval=FALSE, echo=TRUE}
 m <- modules(npa)
 ```
 
@@ -275,14 +275,14 @@ The maximum scoring connected sub-graph found can be large, therefore,
 2 types of figure can ne plotted using **plot** function. It type is set
 to value "single", the global network with modules is drawn.
 
-```{r eval=TRUE, echo=TRUE}
+```{r eval=FALSE, echo=TRUE}
 plot(m) # Default type is 'single'
 ```
 
 For very large
 sub-graph, a clustered view can be obtained with `type` argument set to **multiple**.
 
-```{r eval=TRUE, echo=TRUE}
+```{r eval=FALSE, echo=TRUE}
 plot(m, type = "multiple", title=TRUE)
 ```
 
