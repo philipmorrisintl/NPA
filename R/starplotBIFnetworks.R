@@ -4,21 +4,21 @@
 #####################################################################
 
 #' Starplot per contrasts
-#'
-#' @param bif
-#' @param col
-#' @param col.bg
-#' @param which.to.plot
-#' @param cex.txt
-#' @param title.prefix
-#' @param names.arg
-#' @param cex.main
-#' @param cex.network
-#' @param BW
-#' @param cst
-#' @param border.color
-#' @param cst.border
-#' @param cex
+#' @param bif A list containing the BIF metrics.
+#' @param colours A string vector. Colors for the networks families. If not specified, default palette is used.
+#' @param col.bg A character vector. Color for the backgroud.
+#' @param which.to.plot A integer vector. Indexes of network families to be ploted.
+#' @param cex.txt A number. The character expansion factor for network names text.
+#' @param title.prefix A character vector for prefifing the title of the plot.
+#' @param names.arg  A string vector. Custom names for comparisons
+#' @param cex.main A numerical value. Text scaling factor for title.
+#' @param cex.network. A numerical value. Text scaling factor for network names.
+#' @param BW A logical. If `TRUE`, grayscale colors are used. Defaul is `FALSE`.
+#' @param cst A numerical value. If provided, used for adjusting positioning of
+#' starplot/text
+#' @param border.color. A character vector. Color for starplot sector border.
+#' @param cst.border A numerical value. Starplot sector text size positioning adjustment.
+#' @param cex A numerical value. Scaling factor for points, lines.
 #' @include utils.R
 
 
