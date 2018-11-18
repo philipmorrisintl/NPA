@@ -36,16 +36,16 @@ NPA$unlock()
 #==============================================================================
 # Method: comparisons
 #==============================================================================
-#' Retrieve comparisons names used for NPA computation
-#' @exportMethod comparisons
-#' @param x NPA R6 class instance
-#' @docType methods
-#' @return String vector. Comparisons names
 setGeneric("comparisons",
            def = function(x) standardGeneric("comparisons")
            )
 
-#setGeneric("comparisons")
+#' Retrieve comparisons names used for NPA computation
+#' @param x NPA R6 class instance
+#' @docType methods
+#' @method comparisons NPA
+#' @export
+#' @return String vector. Comparisons names
 setMethod("comparisons",
           signature(x = "R6"), function(x) {
     x$comparisons()
@@ -210,18 +210,3 @@ NPA$set("public", "print", function(...) {
 NPA$lock()
 
 
-#' Compute NPA on the given comparisons (contrasts) and network model
-#'
-#' @param comparisons A list with each slots containing data.frame of genes `nodeLabel`, `foldChange` and `t` statistic
-#' @param network_model A R6 class NPAModel object created by load_model function from NPAModel package
-#' @param b An integer value. Number of resampling performed
-#' @param verbose A logical. If TRUE, progress printed in the console
-#'
-#' @return A R6 class NPA object
-#' @include computeNPA.R
-#' @export
-#'
-compute_npa <- function(comparisons, network_model, b = 500, verbose = FALSE) {
-  np <- computeNPA(comparisons, network_model$get_data(), b = b, verbose = verbose)
-  return(NPA$new(np, network_model))
-}
