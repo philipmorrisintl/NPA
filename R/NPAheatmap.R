@@ -60,7 +60,7 @@ heatmapNPA <- function(npa, clusterNodes = TRUE, cex.labx = 1.6, cex.laby = 1.6,
     ord1 <- 1:nrow(X)
     Xclust = X
     Xclust[is.na(Xclust)] = 0
-
+    ind.all <<- NULL
     if (clusterNodes == TRUE) {
         if (nlevels(group) == 1) {
             hc0 = hclust(dist(Xclust))
@@ -98,7 +98,7 @@ heatmapNPA <- function(npa, clusterNodes = TRUE, cex.labx = 1.6, cex.laby = 1.6,
     D = cbind(reshape2::melt(X), reshape2::melt(txt)[,"value"],
               reshape2::melt(apply(X, 2, function(x) as.character(group)))[,"value"],
               reshape2::melt(t(apply(X, 1, function(x) as.character(group2))))[,"value"])
-
+    Variable <- RowName <- Value <- Text <- NULL
     colnames(D) =  c("RowName", "Variable", "Value", "Text", "Group", "Group2")
 
     D$Group <- factor(D$Group, levels = levels(group))
