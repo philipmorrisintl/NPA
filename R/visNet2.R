@@ -26,6 +26,7 @@
 #' @importFrom igraph list.vertex.attributes
 #' @importFrom igraph plot.igraph
 #' @importFrom igraph vcount
+#' @importFrom grDevices dev.new
 #' @include colorscale.R
 #' 
 visNet2 <- function(E, newpage=FALSE, glayout=layout.fruchterman.reingold,
@@ -153,7 +154,7 @@ visNet2 <- function(E, newpage=FALSE, glayout=layout.fruchterman.reingold,
         vertex.shape=vertex.shape, vertex.label=vertex.label,
         vertex.label.cex=vertex.label.cex, vertex.label.dist=vertex.label.dist,
         vertex.label.color=vertex.label.color, vertex.label.family="sans",
-        edge.color=ecol, ...
+        edge.color=ecol, edge.arrow.size=0.5, ...
     )
     invisible()
 }
