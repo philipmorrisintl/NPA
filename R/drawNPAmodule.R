@@ -33,6 +33,7 @@
 #' @importFrom Rgraphviz getNodeXY
 #' @importFrom Rgraphviz agopen
 #' @importFrom igraph V
+#' @importFrom methods as
 #' @include getNPALE.R
 #' @include colorscale.R
 #' @include visNet2.R
@@ -58,8 +59,8 @@ drawNPAmodule<- function (np, whichin = 1:length(np$coefficients), cex.leg = 1,
             })
         }
     }else {
-        short <- function(x) {
-            x
+        short <- function(nm) {
+            nm
         }
     }
 
@@ -165,7 +166,7 @@ drawNPAmodule<- function (np, whichin = 1:length(np$coefficients), cex.leg = 1,
             df <- rbind(df, df2)
             gg <- as(getAdj(df, symmetric = TRUE), "graphNEL")
             set.seed(467563)
-            glayout <- do.call(cbind, Rgraphviz::getNodeXY(Rgraphviz::getNodeXYagopen(gg,"") )) #DOT by default
+            glayout <- do.call(cbind, Rgraphviz::getNodeXY(Rgraphviz::agopen(gg,"") )) #DOT by default
             rownames(glayout) <- nodes(gg)
             glayout <- glayout[match(igraph::V(g)$name, rownames(glayout)),]
         }
