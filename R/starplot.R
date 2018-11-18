@@ -42,6 +42,8 @@
 #' @param col.line A character vector. Radius line color.
 #' @param border A character vector. Color for polygons border
 #' @param ... Optional additional parameters to be passed to plot function
+#' @importFrom graphics points
+#' @importFrom graphics polygon
 #'
 starplot <- function(x, r = 1, at = c(0, 0), xrmax = NULL, yrmax = NULL, add = FALSE, cst = 1.2,
                      cex.text = 1, ylmax = r * cst, cst.text = cst, text = TRUE, text.type = c("radial", "straight")[1],
