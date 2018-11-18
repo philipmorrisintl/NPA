@@ -4,9 +4,9 @@
 #####################################################################
 
 #' Starplot per networks
-#' @param bif A list containing the BIF metrics
-#' @param m1 An integer for number of rows layout. By default `NULL` for automatic layout
-#' @param m2 An integer for number of columns layout. By default `NULL` for automatic layout
+#' @param bif A list containing the BIF metrics.
+#' @param m1 An integer for number of rows layout. By default `NULL` for automatic layout.
+#' @param m2 An integer for number of columns layout. By default `NULL` for automatic layout.
 #' @param col A string vector. Colors for the networks families. If not specified, default palette is used.
 #' @param reorder A integer vector. Indexes of networks families to be reordered.
 #' @param which.to.plot A integer vector. Indexes of network families to be ploted.
@@ -14,42 +14,46 @@
 #' @param bw A logical. Default is `FALSE`, colored figure is generated.
 #' @param cex.txt A number. The character expansion factor for network names text.
 #' @param marleft A number. Left margin value for the figure.
-#' @param box
-#' @param col.contribtext
-#' @param text.network
-#' @param cex.textnetwork
-#' @param text.subnetwork
-#' @param cex.network
-#' @param add.networks
-#' @param title.prefix
-#' @param names.arg
-#' @param lwd.axis
-#' @param lty.axis
-#' @param cex.legend
-#' @param cex.main
-#' @param add.legend
-#' @param radius.text
-#' @param layout.auto
-#' @param BW
-#' @param col.border
-#' @param text.slice
-#' @param cst
-#' @param border.color
-#' @param cst.border
-#' @param ...
+#' @param col.contribtext A character vector. Color of the sector separation for network famililes.
+#' @param text.network A logical. If `TRUE`, network names abreviations are drawn on the figure.
+#' Default is `FALSE`.
+#' @param cex.textnetwork A numerical value. Scaling of text of the network if `text.network` is `TRUE`.
+#' @param text.subnetwork A logical value. If `TRUE` and `text.network` argument is `TRUE`, subnetworks
+#' abreviation are drawn. Default is `TRUE`.
+#' @param cex.network. A numerical value. Text scaling factor for network names.
+#' @param add.networks A logical. If `TRUE` (default), the network family color legend (and name is `text.network` is `TRUE`) is
+#' shown.
+#' @param title.prefix A character vector for prefifing the title of the plot if `add.legend` is `TRUE`.
+#' @param names.arg  A string vector. Custom names for comparisons
+#' @param lwd.axis A numerical value. Scaling factor for width of sector separators.
+#' @param lty.axis An integer value. Type of lines for the sector separators.
+#' @param cex.legend A numerical value. If legend is used (`add.legend` is `TRUE`), scaling factor for networks family names.
+#' @param cex.main A numerical value. Text scaling factor for titles (in legend and comparisons names).
+#' @param add.legend A logical. If `TRUE`, a legend is added the figure for network families colors and the overall contributions.
+#' @param radius.text A logical. If `TRUE`, the RBIF value and sigma is shown aside the comparison name. If `FALSE`, only
+#' the comparison name is shown. Default is `TRUE`.
+#' @param layout.auto A logical. If `TRUE`, an automatic layout is performed using `m1` and `m2` values.
+#' @param BW A logical. If `TRUE`, grayscale colors are used. Defaul is `FALSE` .
+#' @param col.border A character vector. Color of segments for sectors in starplots.
+#' @param text.slice A string vector. Default is `NULL`, names from the bif object is used for networks text.
+#' @param cst A numerical value. If provided, used for adjusting positioning of
+#' starplot/text
+#' @param border.color. A character vector. Color for starplot sector border.
+#' @param cst.border A numerical value. Starplot sector text size positioning adjustment.
+#' @param ... Additional aguments to be passed to plot function
 #'
 #' @importFrom plotrix arctext
+#' @importFrom graphics pie
 #' @export
 starplotBIFcontrasts <- function(bif, m1 = NULL, m2 = NULL, col = Colors(nrow(bif[[1]]$rbif)),
     reorder = 1:ncol(bif[[1]]$contrib), which.to.plot = 1:ncol(bif[[1]]$contrib),
-    contrib.txt = TRUE, bw = FALSE, cex.txt = 0.7, marleft = 13, box = FALSE,
+    contrib.txt = TRUE, bw = FALSE, cex.txt = 0.7, marleft = 13,
     col.contribtext = "grey40", text.network = FALSE, cex.textnetwork = 1, text.subnetwork = text.network,
     cex.network = 0.8, add.networks = TRUE, title.prefix = "", names.arg = NULL,
     lwd.axis = 2, lty.axis = 3, cex.legend = 1.5, cex.main = 1.2, add.legend = FALSE,
     radius.text = TRUE, layout.auto = TRUE, BW = FALSE, col.border = NULL, text.slice = NULL,
     cst = NULL, border.color = NULL, cst.border = 1.1, ...) {
-
-
+    box <- FALSE
     getC <- function(bif0) {
         bif0$contrib <- bif0$contrib[, reorder, drop = FALSE]
         bif0$r2 <- bif0$r2[reorder, , drop = FALSE]
