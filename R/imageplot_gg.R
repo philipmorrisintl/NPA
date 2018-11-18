@@ -61,7 +61,12 @@
 #' @import reshape2
 #' @import grid
 #' @import stringr
-#' 
+#' @importFrom grDevices colorRampPalette
+#' @importFrom stats dist
+#' @importFrom stats hclust
+#' @importFrom stats as.dist
+#' @importFrom grDevices gray
+#' @importFrom grDevices col2rgb
 #' @include utils.R
 #'
 #' @return A ggplot2 object.
@@ -185,12 +190,12 @@ ImagePlotGG <- function(X,
   ord1 <- 1:nrow(X)
   Xclust <- X
   Xclust[is.na(X)] <- 0
+  ind.all <<- NULL
   if (cluster.row == TRUE) {
     if (nlevels(group) == 1) {
       hc0 <- hclust(as.dist(dist.fun(Xclust)))
       ord1 <- hc0$order
     } else {
-      ind.all <<- NULL
       tmp2 <- tapply(1:nrow(X), group, function(yy) {
         if (length(yy) >= 3) {
           tmp <- X[yy, , drop = FALSE]
@@ -277,6 +282,9 @@ ImagePlotGG <- function(X,
       reshape2::melt(plotlist$group.col)
     )
   D <- D[, c(2, 1, 3, 6, 9, 12)]
+  Variable <- RowName <- Value <- Text <- Text1 <- NULL
+  Shift1 <- Shift2 <- Text2 <- Shift3 <- Text3 <- Shift4 <- NULL
+  Text4 <- Shift5 <- Text5 <- Group <- NULL
   colnames(D) <- c("Variable", "RowName", "Value", "Text",
                    "Group", "Group2")
   D$Group2 <- factor(D$Group2, levels = levels(group.col))
@@ -565,6 +573,7 @@ ImagePlotGG <- function(X,
     g2$layout$l[panels] <- g2$layout$l[panels] + 1
     new_strips <- gtable_select(g2, panels | strips)
     gtable_stack <- function(g1, g2) {
+      z <- NULL
       g1$grobs <- c(g1$grobs, g2$grobs)
       g1$layout <- transform(g1$layout, z = z - max(z),
                              name = "g2")
