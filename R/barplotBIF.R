@@ -23,6 +23,13 @@
 #' @param ... Additional parameters to be passed to low level function call.
 #'
 #' @importFrom plotrix floating.pie
+#' @importFrom grDevices terrain.colors
+#' @importFrom grDevices gray.colors
+#' @importFrom graphics par
+#' @importFrom graphics axis
+#' @importFrom graphics rect
+#' @importFrom graphics abline
+#' @importFrom graphics text
 #' @include starplot.R
 #'
 #'
