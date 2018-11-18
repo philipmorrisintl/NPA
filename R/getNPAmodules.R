@@ -9,10 +9,11 @@
 #' @export
 #' @importFrom igraph upgrade_graph
 #' @importFrom igraph induced_subgraph
-#' @importFrom igraph infomap.community
+#' @importFrom igraph cluster_infomap
 #' @importFrom Rgraphviz getNodeXY
 #' @importFrom Rgraphviz agopen
 #' @importFrom dnet dNetFind
+#' @importFrom methods as
 #' @include getNPALE.R
 #' @include colorscale.R
 
@@ -20,7 +21,7 @@
 getNPAmodules <- function(np){
     LN <- getNPALE(np)
     g <- igraph::upgrade_graph(np$model$g)
-    E(g)$weight <- abs(E(g)$weight)
+    #E(g)$weight <- abs(E(g)$weight)
 
     gg <- as(getAdj(get.data.frame(g)[,1:2], symmetric = TRUE), "graphNEL")
     set.seed(467563)
@@ -34,7 +35,7 @@ getNPAmodules <- function(np){
             s[! names(s) %in% LN[[j]]$leadingNodes[,"GeneId"]] <- -1
 
             mod <- dnet::dNetFind(g, s)
-            com <- igraph::infomap.community(mod)
+            com <- igraph::cluster_infomap(mod, e.weight=abs(E(mod)$weight), modularity=FALSE)
             modules <- vector("list", length(com))
             names(modules) <- paste(names(np$coefficients)[j], "|| Module",1:length(com))
             for(h in 1:length(com)){
