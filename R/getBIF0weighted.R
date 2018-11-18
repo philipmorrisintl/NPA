@@ -13,7 +13,9 @@
 #' @param refs Not used.
 #' @param nets A string vector. Network family names to be used
 #' @param ... Addtional optional parameters to be passed to function
-#'
+#' @include NPAsubset.R
+
+
 getBIF0weighted <- function(npall0, which = 1:length(npall0[[1]]$coefficients), relativeto = NULL,
     group.relativeMAX = NULL, lev = 0.05, refs = NULL, nets = NULL, ...) {
     flagN <- 0
@@ -22,8 +24,7 @@ getBIF0weighted <- function(npall0, which = 1:length(npall0[[1]]$coefficients), 
         flagN <- 1
     }
     if (!setequal(which, 1:length(npall0[[1]]$coefficients))) {
-
-        npall0 <- NPAallsubset(npall0, which)
+        npall0 <- lapply(npall0, function(np) NPAsubset(np, which))
     }
     if (is.null(nets)) {
         nets <- getNets(names(npall0))$nets
