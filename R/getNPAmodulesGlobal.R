@@ -21,6 +21,7 @@
 #' @importFrom Rgraphviz agopen
 #' @importFrom dnet dNetFind
 #' @importFrom graph nodes
+#' @importFrom methods as
 #' @include getNPALE.R
 #' @include colorscale.R
 #' @include utils.R
@@ -49,7 +50,7 @@ getNPAmodulesGlobal <-function(np, alpha= 0, p = 0.8){
     s <- rowSums(s)
     s[s==0] <- -max(s)*alpha
     mod <- dnet::dNetFind(g, s)
-    com <- igraph::infomap.community(mod)
+    com <- igraph::cluster_infomap(mod, e.weight=abs(E(mod)$weight), modularity=FALSE)
     modules <- vector("list", length(com))
     names(modules) <- paste("Module",1:length(com))
     for(h in 1:length(com)){
