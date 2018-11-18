@@ -24,6 +24,12 @@
 #' @param BW A logical. Default is \code{FALSE}, colored version will be drawn
 #' rather than grayscale (for printing).
 #' @param ... Additional parameters to be passed to barplotNPA function
+#' @importFrom grDevices dev.cur
+#' @importFrom graphics layout
+#' @importFrom stats ecdf
+#' @importFrom graphics strwidth
+#' @importFrom graphics strheight
+#' @importFrom graphics title
 #' @include barplotNPA.R
 #'
 barplotNPA3 <- function(np, type=1, bg = "grey90", mar = 8, main = "NPA", maxLN = 10, layout.mat = NULL,
