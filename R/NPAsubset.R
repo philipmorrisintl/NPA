@@ -29,9 +29,6 @@ NPAsubset <- function(np, in0) {
     np1$test[[2]] <- np$test[[2]][in0, , drop = FALSE]
     np1$test[[3]] <- np$test[[3]][in0, , drop = FALSE]
     np1$Y <- np1$Y[, in0, drop = FALSE]
-    # if (!is.null(np1$data)) {
-        # np1$data <- getIDMAPsubset(np1$data, in0, layout = getPlotLayout(length(in0)))
-    # }
     if (!is.null(np1$lnContribs)) {
         np1$lnContribs <- np1$lnContribs[, in0]
     }
