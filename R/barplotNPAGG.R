@@ -16,13 +16,15 @@
 #' @importFrom ggplot2 scale_fill_manual
 #' @importFrom ggplot2 theme
 #' @importFrom ggplot2 element_text
-#' @param np NPA object
+#' @param np A list object containing NPA data
 #' @param main Title
 #' @param cex.labx Size of labels
 #' @param col Colors of the bars
 #' @param txt.size Size of the *O*K* labels
 #'
 #' @return A ggplot object
+#' @importFrom grDevices rainbow
+#' @export
 
 barplotNPAGG <- function(np,
                          main = "Network Perturbation Amplitude", cex.labx = 2,
@@ -32,6 +34,7 @@ barplotNPAGG <- function(np,
     D = data.frame(x = np$coefficients, ID = factor(names(np$coefficients), levels = names(np$coefficients)),
                    ci.up = np$ci.up, ci.down = np$ci.down)
 
+    ci.up <- ci.down <- ID <- x <- NULL
 
     limits <- aes(ymax = ci.up, ymin = ci.down)
     dodge <- position_dodge(width = 0.9)
