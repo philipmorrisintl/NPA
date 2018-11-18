@@ -54,6 +54,13 @@
 #' @param details A logical. If \code{TRUE}, additional information is
 #'displayed regarding the permutation tests.
 #' @param ... Optional additional parameter to be passed
+#' @importFrom graphics barplot.default
+#' @importFrom graphics grid
+#' @importFrom graphics arrows
+#' @importFrom graphics legend
+#' @importFrom stats median
+#' @importFrom stats quantile
+#' @importFrom graphics segments
 #' @include utils.R
 #' @return Barplot of vector of barplots object
 #'
