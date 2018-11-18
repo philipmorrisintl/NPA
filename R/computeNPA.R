@@ -3,6 +3,22 @@
 ## Quai Jeanrenaud 5, 2000 Neuchatel, Switzerland
 #####################################################################
 
+#' Compute NPA on the given comparisons (contrasts) and network model
+#'
+#' @param comparisons A list with each slots containing data.frame of genes `nodeLabel`, `foldChange` and `t` statistic
+#' @param network_model A R6 class NPAModel object created by load_model function from NPAModel package
+#' @param b An integer value. Number of resampling performed
+#' @param verbose A logical. If TRUE, progress printed in the console
+#'
+#' @return A R6 class NPA object
+#' @export
+#'
+compute_npa <- function(comparisons, network_model, b = 500, verbose = FALSE) {
+  np <- computeNPA(comparisons, network_model$get_data(), b = b, verbose = verbose)
+  return(NPA$new(np, network_model))
+}
+
+
 #' Compute NPA scoring for a given dataset and model
 #'
 #' @param idmap A R list object. Contains data.frame for each contrast slots.
@@ -11,6 +27,8 @@
 #' @param verbose A logical. Default is \code{TRUE}, messages are displayed in
 #' the console
 #' @importFrom NPAModels getLQ
+#' @importFrom stats qnorm
+#' @importFrom stats pnorm
 #' @return A R list object containing the scoring metrics of the network
 #'
 #'
