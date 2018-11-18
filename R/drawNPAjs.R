@@ -17,6 +17,8 @@
 #' @param opts A R list object. Options to be passed to graph2js function
 #' @param ... Optional additional parameters to be passed to graph2js function
 #' @return A R list object. Object returned by graph2js function call.
+#' @importFrom stats na.omit
+#' @importFrom utils browseURL
 #' @include getNPALE.R
 #' @include colorscale.R
 #'
@@ -97,12 +99,12 @@ drawNPAjs <- function(np, pathout = getwd(), filename = NULL, which = NULL, open
     # rownames(inner.texts) <- rownames(textnode)[!is.na(m)]
     colnames(inner.texts) <- colnames(textnode)
     stopifnot(all(rownames(inner.texts) == rownames(a)))
-    l <- graph2js(a, inner.values = inner.values, inner.colors = inner.colors, inner.texts = inner.texts,
-        nodes.prop = nodes.prop, opts = opts, output.dir = pathout, filename = filename,
+    l <- graph2js(a, innerValues = inner.values, innerColors = inner.colors, innerTexts = inner.texts,
+        nodesProp = nodes.prop, opts = opts, outputDir = pathout, filename = filename,
         ...)
     if (!is.null(pathout)) {
         if (open.in.browser) {
-            openFileInOS(l$filepath)
+            browseURL(l$filepath)
         }
     }
     return(l)
