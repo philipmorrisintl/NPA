@@ -29,7 +29,10 @@
 #' @importFrom grDevices dev.new
 #' @include colorscale.R
 #' 
-visNet2 <- function(E, newpage=FALSE, glayout=layout.fruchterman.reingold,
+visNet2 <- function(
+                    E, newpage=FALSE,
+                    #glayout=layout.fruchterman.reingold,
+                    glayout="dot",
     vertex.frame.color="black", vertex.size=NULL, vertex.color=NULL,
     vertex.shape=NULL, vertex.label=NULL, vertex.label.cex=NULL,
     vertex.label.dist=NULL, vertex.label.color="black", edge.color=NULL, ...) {

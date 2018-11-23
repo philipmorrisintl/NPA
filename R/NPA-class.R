@@ -192,6 +192,8 @@ NPAModules <- function(modulesData) {
 NPA$set("public", "modules", function(alpha = 0, p = p) {
   "S3 class object that stores module data."
   modules <- getNPAmodulesGlobal(private$data, alpha = alpha, p = p)
+  modules$x <- 0 
+  modules$y <- 0
   return(NPAModules(modules))
 })
 

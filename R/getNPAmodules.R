@@ -93,6 +93,7 @@ getNPAmodules <- function(np){
 #' 
 plotNPAmodules <-function(npmodules, type=c("graph", "heatmap"), titleSuffix = ""){
     np <- attr(npmodules,"npa")
+    type <- match.args(type)
     npmodules <- npmodules[sapply(npmodules, function(x) is.list(x))]
     if(type == "heatmap"){
         l0 <- lapply(npmodules, function(m) reshape2::melt(lapply(m, function(x) data.frame(
@@ -123,8 +124,8 @@ plotNPAmodules <-function(npmodules, type=c("graph", "heatmap"), titleSuffix = "
             layout(getPlotLayout(length(ml)))
             for(k in 1:length(ml)){
                 if(is.list(ml[[k]])){
-                    visNet2(ml[[k]]$g, vertex.label.dist = 0.3, vertex.label.cex =1,
-                            vertex.color = ml[[k]]$col, vertex.size = 12,
+                    visNet2(ml[[k]]$g, vertex.label.dist = 1, vertex.label.cex =1,
+                            vertex.color = ml[[k]]$col, vertex.size = 1,
                             vertex.shape = ml[[k]]$vshape,glayout = ml[[k]]$layout)
                 }else{
                     gplots::textplot("NPA not *O*K*", col = "grey", cex =  1)

@@ -16,6 +16,7 @@
 #' @importFrom igraph infomap.community
 #' @importFrom igraph E
 #' @importFrom igraph V
+#' @importFrom igraph as.undirected
 #' @importFrom igraph get.data.frame
 #' @importFrom Rgraphviz getNodeXY
 #' @importFrom Rgraphviz agopen
@@ -50,7 +51,7 @@ getNPAmodulesGlobal <-function(np, alpha= 0, p = 0.8){
     s <- rowSums(s)
     s[s==0] <- -max(s)*alpha
     mod <- dnet::dNetFind(g, s)
-    com <- igraph::cluster_infomap(mod, e.weight=abs(E(mod)$weight), modularity=FALSE)
+    com <- igraph::cluster_infomap(igraph::as.undirected(mod))
     modules <- vector("list", length(com))
     names(modules) <- paste("Module",1:length(com))
     for(h in 1:length(com)){
