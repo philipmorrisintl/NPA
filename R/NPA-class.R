@@ -8,7 +8,6 @@
 #'
 #' @docType class
 #' @importFrom R6 R6Class
-#' @export
 #' @return Object of \code{\link{R6Class}} named NPA containing NPA result data
 #' @format \code{\link{R6Class}} object.
 #' @field data A R list object containing NPA scoring results
@@ -46,6 +45,9 @@ setGeneric("comparisons",
 #' @method comparisons NPA
 #' @export
 #' @return String vector. Comparisons names
+#' @examples 
+#' data(npa)
+#' comparisons(npa)
 setMethod("comparisons",
           signature(x = "R6"), function(x) {
     x$comparisons()
@@ -68,6 +70,9 @@ NPA$set("public", "comparisons", function() {
 #' Default value is `npa`
 #' @docType methods
 #' @return Numeric vector or matrix depending on `type` argument value.
+#' @examples 
+#' data(npa)
+#' coefficients(npa)
 
 setMethod("coefficients",
           signature(object = "R6"),
@@ -101,6 +106,9 @@ NPA$set("public", "coefficients", function(type = c("npa", "nodes")) {
 #' is `npa`.
 #' @docType methods
 #' @return Numeric vector or matrix depending on `type` argument value.
+#' @examples 
+#' data(npa)
+#' conf.int(npa)
 setGeneric("conf.int",
            def = function(object, ...) standardGeneric("conf.int")
 )
@@ -172,6 +180,9 @@ NPA$set("public", "summary", function() {
 #' @docType methods
 #' @include getNPAmodulesGlobal.R
 #' @return S3 class object that stores module data.
+#' @examples 
+#' data(npa)
+#' m <- modules(npa)
 setGeneric("modules",
            def = function(object, ...) standardGeneric("modules")
 )

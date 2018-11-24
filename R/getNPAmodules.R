@@ -6,7 +6,6 @@
 #' Extract sub-graphs with dense leading nodes across all the comparison
 #'
 #' @param np NPA data (list object)
-#' @export
 #' @importFrom igraph upgrade_graph
 #' @importFrom igraph induced_subgraph
 #' @importFrom igraph cluster_infomap
@@ -24,7 +23,9 @@ getNPAmodules <- function(np){
     #E(g)$weight <- abs(E(g)$weight)
 
     gg <- as(getAdj(get.data.frame(g)[,1:2], symmetric = TRUE), "graphNEL")
-    set.seed(467563)
+    ## Bioconductor does not allow setting seed in the code
+    ## Do it outside of the function call if needed.
+    # set.seed(467563)
     glay <- do.call(cbind,Rgraphviz::getNodeXY(Rgraphviz::agopen(gg,"") ))
     rownames(glay) <- nodes(gg)
 
@@ -86,7 +87,6 @@ getNPAmodules <- function(np){
 #' @param titleSuffix character vector, suffix for title
 #' @importFrom reshape2 melt
 #' @importFrom gplots textplot
-#' @export
 #' @include getsplit.R
 #' @include imageplot_gg.R
 #' @include visNet2.R

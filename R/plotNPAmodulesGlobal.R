@@ -13,7 +13,6 @@
 #' @param which.module A integer vector, indexes of selected modules. By default, `NULL` means all modules are used. 
 #' @param ...  Other arguments to be passed to drawNPAmodule function.
 #'
-#' @export
 #' @include utils.R
 #' @include drawNPAmodule.R
 #' @importFrom igraph V

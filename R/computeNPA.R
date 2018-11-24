@@ -12,7 +12,12 @@
 #'
 #' @return A R6 class NPA object
 #' @export
-#'
+#' @examples 
+#' library(NPAModels)
+#' data(COPD1)
+#' #net.apopto <- load_model('Mm', 'CFA', 'Apoptosis')
+#' #npa <- compute_npa(COPD1, net.apopto, verbose = TRUE)
+#' 
 compute_npa <- function(comparisons, network_model, b = 500, verbose = FALSE) {
   np <- computeNPA(comparisons, network_model$get_data(), b = b, verbose = verbose)
   return(NPA$new(np, network_model))
@@ -165,7 +170,9 @@ computeNPA <- function(dL, model, verbose=FALSE, b=500) {
     nodes$ci.up <- rg + qnorm(1 - (1 - alpha)/2) * sqrt(var.coef)
     nodes$ci.down <- rg - qnorm(1 - (1 - alpha)/2) * sqrt(var.coef)
     nodes$p.value <- pnorm(abs(rg)/sqrt(var.coef), lower.tail = FALSE)
-    set.seed(2674)
+    ## Bioconductor does not allow setting seed in the code
+    ## Do it outside of the function call if needed.
+    # set.seed(2674)
     # Downstream reshuffling
     if (verbose == TRUE) {
         message("Computing downstream reshuffling...")
@@ -175,7 +182,9 @@ computeNPA <- function(dL, model, verbose=FALSE, b=500) {
     }
 
     permV0 <- lapply(1:b, function(i) {
-        set.seed(i + 241)
+        ## Bioconductor does not allow setting seed in the code
+        ## Do it outside of the function call if needed.
+        # set.seed(i + 241)
         return(-L3invtL2 %*% (Y[perm(1:nrow(Y)), ]))
     })
     permV0npa <- sapply(permV0, function(X) apply(X, 2, function(x) t(x) %*%

@@ -7,7 +7,7 @@ Author: Florian Martin <Florian.Martin@pmi.com>, Sylvain Gubian
     <Sylvain.Gubian@pmi.com>
 Maintainer: Sylvain Gubian <DL.RSupport@pmi.com>
 Depends:
-    R (>= 3.4),
+    R (>= 3.5),
     R6
 Imports:
     grid,

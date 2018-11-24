@@ -44,7 +44,6 @@
 #'
 #' @importFrom plotrix arctext
 #' @importFrom graphics pie
-#' @export
 starplotBIFcontrasts <- function(bif, m1 = NULL, m2 = NULL, col = Colors(nrow(bif[[1]]$rbif)),
     reorder = 1:ncol(bif[[1]]$contrib), which.to.plot = 1:ncol(bif[[1]]$contrib),
     contrib.txt = TRUE, bw = FALSE, cex.txt = 0.7, marleft = 13,

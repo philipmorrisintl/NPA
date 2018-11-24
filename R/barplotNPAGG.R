@@ -25,6 +25,10 @@
 #' @return A ggplot object
 #' @importFrom grDevices rainbow
 #' @export
+#' @examples
+#'    data(npa) 
+#'    p <- barplotNPAGG(npa$get_data(), main="Barplot for NPA")
+#'
 
 barplotNPAGG <- function(np,
                          main = "Network Perturbation Amplitude", cex.labx = 2,

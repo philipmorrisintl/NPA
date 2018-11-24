@@ -55,7 +55,6 @@ getPlotLayout <- function(N) {
 #' @param E1 a 2 or 3 column matrix of edges. Columns corresponds to edge source, sign (optional), and edges sink.
 #' @param symmetric logical, shoudl the adjacency matrix be symmetrized?
 #' @return An adjacency matrix
-#' @export
 #'
 getAdj <- function(E1, symmetric = TRUE) {
   if (ncol(E1) == 2) {
@@ -76,7 +75,6 @@ getAdj <- function(E1, symmetric = TRUE) {
 #'
 #' @param a a square adjacency matrix
 #' @return An adjacency symetric matrix
-#' @export
 #'
 getSym <- function(a) {
   d0 <- diag(a)

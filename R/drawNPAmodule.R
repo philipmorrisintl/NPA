@@ -22,11 +22,8 @@
 #' and leading genes detection.
 #' @param showSignif A logical. If \code{TRUE}, "#" symbol is shown for nodes that
 #' have signifiant NPA scores. 
-#' @param seed An integer value for seeding the RNG in order to reproduce same layout
-#' for the figure.
 #' @param ... any argument to be pased to visNet2 function.
 #'
-#' @export
 #' @importFrom igraph induced_subgraph
 #' @importFrom igraph layout.fruchterman.reingold
 #' @importFrom igraph add.vertex.shape
@@ -44,7 +41,7 @@ drawNPAmodule<- function (np, whichin = 1:length(np$coefficients), cex.leg = 1,
                           glayout = "dot", colbg.nodes = "grey90",
                           okonly = TRUE, abbrev = TRUE, display.stat = TRUE, lwdHighlight=1,
                           colHighlight = "black", vertexHighlight = NULL, p = 0.8,
-                          showSignif = FALSE, seed = 764, ...)
+                          showSignif = FALSE, ...)
 {
     if (abbrev == TRUE) {
         short <- function(nm) {
@@ -154,7 +151,9 @@ drawNPAmodule<- function (np, whichin = 1:length(np$coefficients), cex.leg = 1,
                })
     }
     if (is(class(glayout), "function")) {
-        set.seed(seed)
+        ## Bioconductor does not allow setting seed in the code
+        ## Do it outside of the function call if needed.
+        # set.seed(seed)
         edges <- igraph::E(g)
         edges$weigths <- abs(edges$weight)
         igraph::E(g) <- edges
@@ -169,7 +168,9 @@ drawNPAmodule<- function (np, whichin = 1:length(np$coefficients), cex.leg = 1,
             colnames(df2) <- colnames(df)
             df <- rbind(df, df2)
             gg <- as(getAdj(df, symmetric = TRUE), "graphNEL")
-            set.seed(467563)
+            ## Bioconductor does not allow setting seed in the code
+            ## Do it outside of the function call if needed.
+            # set.seed(467563)
             glayout <- do.call(cbind, Rgraphviz::getNodeXY(Rgraphviz::agopen(gg, ""))) # DOT by default
             rownames(glayout) <- nodes(gg)
             glayout <- glayout[match(igraph::V(g)$name, rownames(glayout)),]

@@ -9,7 +9,6 @@
 #' @docType class
 #' @importFrom R6 R6Class
 #' @field data A R list object containing NPA scoring results
-#' @export
 #' @include getBIF.R
 #' @return Object of \code{\link{R6Class}} named NPAList containing NPA objects
 #' @format \code{\link{R6Class}} object.
@@ -90,7 +89,11 @@ NPAList$lock()
 #'
 #' @return A R6 class NPAList object
 #' @export
-#'
+#' @examples 
+#' library(NPAModels)
+#' data(COPD1)
+#' #models <- load_models(species = 'Mm')
+#' #npalist <- compute_npa_list(COPD1, models)
 compute_npa_list <- function(comparisons, models,
                          verbose=FALSE) {
   npas <- list()
@@ -112,6 +115,12 @@ compute_npa_list <- function(comparisons, models,
 #' @exportMethod get_bif
 #' @param x NPAList R6 class instance
 #' @docType methods
+#' @examples 
+#' library(NPAModels)
+#' data(COPD1)
+#' #models <- load_models(species = 'Mm')
+#' #npa_list <- compute_npa_list(COPD1, models)
+#' #bif <- get_bif(npa_list)
 
 setGeneric("get_bif",
            def = function(x) standardGeneric("get_bif")

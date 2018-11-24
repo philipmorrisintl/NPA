@@ -21,7 +21,6 @@
 #' @param vertex.label.color A character vector, color for node label
 #' @param edge.color A character vector, color for edges.
 #' @param ... Additional optional parameters to be passed to plot.igraph
-#' @export
 #' @importFrom methods is
 #' @importFrom igraph igraph.from.graphNEL
 #' @importFrom igraph list.vertex.attributes
