@@ -34,6 +34,7 @@
 #' @importFrom Rgraphviz agopen
 #' @importFrom igraph V
 #' @importFrom methods as
+#' @importFrom methods is
 #' @include getNPALE.R
 #' @include colorscale.R
 #' @include visNet2.R
@@ -78,7 +79,8 @@ drawNPAmodule<- function (np, whichin = 1:length(np$coefficients), cex.leg = 1,
     nm0 <- igraph::V(g)$name
     igraph::V(g)$name <- short(igraph::V(g)$name)
 
-    tmp <- np$nodes.coefficients[rownames(np$nodes.coefficients) %in% vertex.set, whichin, drop = FALSE]
+    #tmp <- np$nodes.coefficients[rownames(np$nodes.coefficients) %in% vertex.set, whichin, drop = FALSE]
+    tmp <- np$nodes.coefficients
     rownames(tmp) <- short(rownames(tmp))
 
     bar.values <- lapply(1:nrow(tmp), function(i) tmp[i, ])
@@ -133,8 +135,10 @@ drawNPAmodule<- function (np, whichin = 1:length(np$coefficients), cex.leg = 1,
                    xc <- seq(x - size/2, x + size/2, length = nc + 1)
                    yc <- int/max(abs(int)) * size/2 + y
 
-                   colbar <- colorscale(int, signed = TRUE, minx = min(np$nodes.coefficients[rownames(np$nodes.coefficients) %in% vertex.set,whichin]),
-                                        maxx = max(np$nodes.coefficients[rownames(np$nodes.coefficients) %in% vertex.set,whichin]))
+                   #colbar <- colorscale(int, signed = TRUE, minx = min(np$nodes.coefficients[rownames(np$nodes.coefficients) %in% vertex.set,whichin]),
+                #                    maxx = max(np$nodes.coefficients[rownames(np$nodes.coefficients) %in% vertex.set,whichin]))
+                   colbar <- colorscale(int, signed = TRUE, minx = min(np$nodes.coefficients),
+                                        maxx = max(np$nodes.coefficients))
                    colbar[!npSignif[whichin]] <-"grey30"
                    rect(xc[1], y - size/1.9, xc[length(xc)], y + size/1.9,
                         col = colbg.nodes, border = bdr, lwd = lwdHighlight)
@@ -149,7 +153,7 @@ drawNPAmodule<- function (np, whichin = 1:length(np$coefficients), cex.leg = 1,
                    }
                })
     }
-    if (class(glayout) == "function") {
+    if (is(class(glayout), "function")) {
         set.seed(seed)
         edges <- igraph::E(g)
         edges$weigths <- abs(edges$weight)
@@ -166,20 +170,23 @@ drawNPAmodule<- function (np, whichin = 1:length(np$coefficients), cex.leg = 1,
             df <- rbind(df, df2)
             gg <- as(getAdj(df, symmetric = TRUE), "graphNEL")
             set.seed(467563)
-            glayout <- do.call(cbind, Rgraphviz::getNodeXY(Rgraphviz::agopen(gg,"") )) #DOT by default
+            glayout <- do.call(cbind, Rgraphviz::getNodeXY(Rgraphviz::agopen(gg, ""))) # DOT by default
             rownames(glayout) <- nodes(gg)
             glayout <- glayout[match(igraph::V(g)$name, rownames(glayout)),]
         }
     }
     if (is.null(vertex.label.dist)) {
-        vertex.label.dist <- min(dist(glayout))/10
+        vertex.label.dist <- min(dist(glayout))/60
     }
     igraph::add.vertex.shape("bar", clip = igraph::vertex.shapes("circle")$clip,
                      plot = myvertexplot, parameters = list(vertex.bar = rep(0,
                                                                              length(whichin))))
     visNet2(g, vertex.shape = "bar", vertex.bar = bar.values,
             vertex.size = vertex.size, vertex.label.dist = vertex.label.dist,
-            glayout = glayout, ...)
+            glayout = glayout)
+    #visNet2(g, vertex.shape = "bar", vertex.bar = bar.values,
+    #        vertex.size = vertex.size, vertex.label.dist = vertex.label.dist,
+    #        glayout = glayout, ...)
 
     glayoutNormalized <- apply(glayout,2,function(x) 2*(x-min(x))/(max(x)-min(x))-1)
     rownames(glayoutNormalized) <- rownames(glayout)

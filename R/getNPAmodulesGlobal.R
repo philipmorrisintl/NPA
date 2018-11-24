@@ -34,6 +34,8 @@ getNPAmodulesGlobal <-function(np, alpha= 0, p = 0.8){
     igraph::E(g)$weight <- abs(igraph::E(g)$weight)
     
     gg <- as(getAdj(igraph::get.data.frame(g)[,1:2], symmetric = TRUE), "graphNEL")
+    ## Bioconductor does not allow setting seed in the code
+    ## Do it outside of the function call if needed.
     set.seed(467563)
     glay <- do.call(cbind,Rgraphviz::getNodeXY(Rgraphviz::agopen(gg,"") ))
     rownames(glay) <- graph::nodes(gg)

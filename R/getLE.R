@@ -43,7 +43,13 @@ getLE <- function(Q, Y, prop = 0.8, plotit = TRUE, cex.txt = 0.7) {
     names(LEnodes) <- colnames(D)
     LEnodes <- lapply(LEnodes, function(x) {
         y <- x
-        if (class(y$leadingNodes) != "matrix") {
+        ## Strange R behavior here, the `is` call returns FALSE
+        #print(is(class(y$leadingNodes), "Matrix"))
+        ## The class function returns `matrix` WTF
+        #print(class(y$leadingNodes))
+        ## Then we do use is() here
+        cls <- class(y$leadingNodes)
+        if (cls != "matrix") {
             y$leadingNodes <- matrix(y$leadingNodes, nrow = 1)
         }
         return(y)

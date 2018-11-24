@@ -22,10 +22,12 @@
 #' @param edge.color A character vector, color for edges.
 #' @param ... Additional optional parameters to be passed to plot.igraph
 #' @export
+#' @importFrom methods is
 #' @importFrom igraph igraph.from.graphNEL
 #' @importFrom igraph list.vertex.attributes
 #' @importFrom igraph plot.igraph
 #' @importFrom igraph vcount
+#' @importFrom igraph V<-
 #' @importFrom grDevices dev.new
 #' @include colorscale.R
 #' 
@@ -37,7 +39,9 @@ visNet2 <- function(
     vertex.shape=NULL, vertex.label=NULL, vertex.label.cex=NULL,
     vertex.label.dist=NULL, vertex.label.color="black", edge.color=NULL, ...) {
 
-    set.seed(435)
+    ## Bioconductor does not allow setting seed in the code
+    ## Do it outside of the function call if needed.
+    ## set.seed(435)
     getSignedAdj <- function(E1) {
         nds <- sort(unique(as.vector(E1[, c(1, 3)])))
         A <- tapply(
@@ -51,7 +55,7 @@ visNet2 <- function(
         return(A)
     }
 
-    if(class(E) == "matrix") {
+    if(is(class(E),"matrix")) {
         if(ncol(E) == 2) {
             E <- cbind(E[, 1], rep("1", nrow(E)), E[, 2])
         }
@@ -60,12 +64,12 @@ visNet2 <- function(
         g <- E
     }
 
-    if (class(g) == "graphNEL") {
+    if (is(class(g), "graphNEL")) {
         ig <- igraph::igraph.from.graphNEL(g)
     } else {
         ig <- g
     }
-    if (class(ig) != "igraph") {
+    if (is(class(ig), "igraph")) {
         stop(
             "The function must apply to either 'igraph' or 'graphNEL' object.\n"
         )
@@ -83,7 +87,7 @@ visNet2 <- function(
     }
     if(is.null(edge.color)){
         ecol <- rep("grey", length(unclass((E(ig)))))
-        if(class(E) == "matrix"){
+        if(is(class(E), "matrix")) {
             d <- get.data.frame(ig)
             sgn <- rep(1, nrow(d))
             sgn[match(
@@ -92,7 +96,7 @@ visNet2 <- function(
             )] <- as.numeric(E[, 2])
             ecol <- c("black", "grey")[unclass(factor(sgn, levels=c(-1, 1)))]
         }
-        if(class(E) == "igraph") {
+        if(is(class(E), "igraph")) {
            if(!is.null(E(E)$weight)) {
                ecol <- c("black","grey")[unclass(
                             factor(
@@ -157,7 +161,7 @@ visNet2 <- function(
         vertex.shape=vertex.shape, vertex.label=vertex.label,
         vertex.label.cex=vertex.label.cex, vertex.label.dist=vertex.label.dist,
         vertex.label.color=vertex.label.color, vertex.label.family="sans",
-        edge.color=ecol, edge.arrow.size=0.5, ...
+        edge.color=ecol, edge.arrow.size=0.3, ...
     )
     invisible()
 }

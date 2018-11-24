@@ -17,12 +17,12 @@ Colors <- function(n, name="Spectral") {
 #'
 #' Inverse a matrix and generalize inverse it if singular
 #' @param M A \code{numeric} \code{matrix}.
+#' @importFrom methods is
 #' @return Inverse or pseudo inverse of the \code{matrix} M.
-#' @author PMP SA \email{HPCAdministration.RD@@pmi.com}
 #'
 solve2 <- function(M) {
     Minv <- try(solve(M), silent = TRUE)
-    if (class(Minv) == "try-error") {
+    if (is(class(Minv), "try-error")) {
         svM <- svd(M)
         lambdainv <- rep(0, length(svM$d))
         lambdainv[abs(svM$d) > 1e-13] <- 1/svM$d[abs(svM$d) > 1e-13]

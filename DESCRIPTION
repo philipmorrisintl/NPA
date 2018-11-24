@@ -10,9 +10,13 @@ Depends:
     R (>= 3.4),
     R6
 Imports:
+    grid,
+    grDevices,
+    graphics,
+    stats,
+    utils,
     ggplot2,
     plotrix,
-    apcluster,
     gplots,
     RColorBrewer,
     RGraph2js,
@@ -77,11 +81,12 @@ Collate:
     'getNets2.R'
     'getWeightedBIF.R'
     'onLoad.R'
+    'plotNPAmodulesGlobal.R'
     'starplotBIFnetworks.R'
     'starplotBIFcontrasts.R'
     'plot.R'
-    'plotNPAmodulesGlobal.R'
     'subset.R'
+biocViews: DifferentialExpression, Visualization, Network, GraphAndNetwork, MathematicalBiology, SystemsBiology, Transcriptomics, GeneExpression
 Suggests:
     knitr,
     rmarkdown,

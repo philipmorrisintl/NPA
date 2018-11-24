@@ -70,7 +70,7 @@ getNPALE <- function(npares, plotit = FALSE, which = 1:length(npares$coefficient
             }
             le[[k]] <- list(leadingNodes = data.frame(Rank = c(1:length(x)), GeneId = names(x),
                 Sign = sign(x), Contrast = rep(colnames(npares$nodes.coefficients[,
-                  which, drop = F])[k], length(x))))
+                  which, drop = FALSE])[k], length(x))))
         }
     }
     if (length(which0) == 1) {

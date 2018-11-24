@@ -48,9 +48,9 @@ NPA$lock()
 
 BIF$unlock()
 setMethod("plot",
-          signature(x = "BIF", y = "integer"),
-          function(x, y = 1 , ...) {
-            plot.BIF(x, y = 1, ...)
+          signature(x = "BIF", y = "character"),
+          function(x, y = "networks" , ...) {
+            plot.BIF(x, y = "networks", ...)
           })
 
 #===============================================================================
@@ -58,8 +58,8 @@ setMethod("plot",
 #===============================================================================
 #' Generate a BIF plot showing starplots per comparisons or per network families
 #' @param x BIF R6 class instance
-#' @param type An integer value. Type of plot. `type` is 1, default version
-#' showing network contributions for each comparison. If `type` is 2, startplots
+#' @param type An character vector. Type of plot. `type` is "network", default version
+#' showing network contributions for each comparison. If `type` is "comparisons", startplots
 #' figures of contributions of comparisons per network families is shown.
 #' @param ... Additional parameters that can be passed to startplot functions (see
 #' startplotBIFcontrasts and starplotBIFnetworks for details).
@@ -87,17 +87,30 @@ BIF$lock()
 #===============================================================================
 # Method: plot for NPA modules
 #===============================================================================
-
+#' Plot NPA modules as a network graph
+#' @param x NPAModules S3 class object
+#' @param type An character vector. Type of plot. `type` is "network", default version
+#' showing network contributions for each comparison. If `type` is "comparisons", startplots
+#' figures of contributions of comparisons per network families is shown.
+#' @param ... Additional parameters that can be passed to plotNPAmodulesGlobal functions
+#' @docType methods
+#' @include plotNPAmodulesGlobal.R
+#' @include NPA-class.R
+#' @rdname plot.NPAModules
+#' @method plot NPAModules
+#' @export
 plot.NPAModules <- function(
   x,
   ...
   ) {
+    x$x <- NULL
+    x$y <- NULL
    return(invisible(plotNPAmodulesGlobal(
      npmodules = x,
      ...
      #main = main,
      #useLayout = useLayout,
      #title = title,
-     #type = type , which.module = which.module, glayout = glayout, ...
+     #mode = mode , which.module = which.module, glayout = glayout, ...
      )))
 }

@@ -241,16 +241,15 @@ Two options are available for plotting an NPA object.
 _Note: The heatmap figure can be big and may be more suitable for
 PDF pages generation._
 
-```{r eval=FALSE, fig.align='center', fig.height=22, fig.width=8, warning=FALSE}
+```{r eval=TRUE, fig.align='center', fig.height=22, fig.width=8, warning=FALSE}
 plot(npa, type = 'heatmap')
 ```
-![](npa_heatmap.png)
 
 
 The _graph_ option draws a graph figure that represents the network backbone. In each node, a barplot is displayed
 showing the coefficient value for each comparison.
 
-```{r eval=FALSE, fig.align='center'}
+```{r eval=TRUE, fig.align='center', fig.height=20}
 plot(npa, type = 'graph')
 ```
 
@@ -275,15 +274,16 @@ The maximum scoring connected sub-graph found can be large, therefore,
 2 types of figure can ne plotted using **plot** function. It type is set
 to value "single", the global network with modules is drawn.
 
-```{r eval=TRUE, echo=TRUE}
-plot(m) # Default type is 'single'
+```{r eval=TRUE, echo=TRUE, fig.height=20}
+plot(m)
 ```
 
 For very large
 sub-graph, a clustered view can be obtained with `type` argument set to **multiple**.
 
 ```{r eval=TRUE, echo=TRUE}
-plot(m, type = "multiple", title=TRUE)
+# Showing the 3 first modules
+plot(m, type = "multiple", title = TRUE, which.module = seq(1:3))
 ```
 
 
