@@ -25,6 +25,8 @@
 #' @include getNPALE.R
 #' @include colorscale.R
 #' @include utils.R
+#' @return  A list object with graph object, layout, vertex names, nodes
+#' coefficients, vertex shape, leading nodes values.
 
 
 getNPAmodulesGlobal <-function(np, alpha= 0, p = 0.8){

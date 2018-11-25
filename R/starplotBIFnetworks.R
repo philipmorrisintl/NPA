@@ -3,7 +3,7 @@
 ## Quai Jeanrenaud 5, 2000 Neuchatel, Switzerland
 #####################################################################
 
-#' Starplot per contrasts
+#' Starplot per comparisons
 #' @param bif A list containing the BIF metrics.
 #' @param colours A string vector. Colors for the networks families. If not specified, default palette is used.
 #' @param col.bg A character vector. Color for the backgroud.
@@ -19,6 +19,7 @@
 #' @param border.color. A character vector. Color for starplot sector border.
 #' @param cst.border A numerical value. Starplot sector text size positioning adjustment.
 #' @param cex A numerical value. Scaling factor for points, lines.
+#' @return A NULL value. This function does only plot BIF per comparisons.
 #' @include utils.R
 
 
@@ -74,6 +75,5 @@ starplotBIFnetworks <- function(bif, colours = Colors()(ncol(bif[[1]]$contrib)),
             col.bg = col.bg, cex.main = cex.main, cst = cst, border = "black", cst.text = cst.border,
             col.border = border.color)
     }
-    x <- NULL
-    return(x)
+    return(NULL)
 }

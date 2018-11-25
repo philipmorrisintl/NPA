@@ -31,6 +31,7 @@
 #' @importFrom graphics abline
 #' @importFrom graphics text
 #' @include starplot.R
+#' @return An invisible list with BIF plotted values, colors, pie and starplot values.
 #'
 #'
 barplotBIF <-

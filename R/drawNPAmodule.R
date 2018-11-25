@@ -23,7 +23,7 @@
 #' @param showSignif A logical. If \code{TRUE}, "#" symbol is shown for nodes that
 #' have signifiant NPA scores. 
 #' @param ... any argument to be pased to visNet2 function.
-#'
+#' @return A list object containing the graph object, layout and labels of the network.
 #' @importFrom igraph induced_subgraph
 #' @importFrom igraph layout.fruchterman.reingold
 #' @importFrom igraph add.vertex.shape

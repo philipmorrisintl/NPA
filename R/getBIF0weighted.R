@@ -13,6 +13,7 @@
 #' @param refs Not used.
 #' @param nets A string vector. Network family names to be used
 #' @param ... Addtional optional parameters to be passed to function
+#' @return A list with relative bif values, network contributions, bif value per comparisons.
 #' @include NPAsubset.R
 
 

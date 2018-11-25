@@ -62,11 +62,20 @@ NPAList$set("public", "print", function(...) {
 #' graph showing nodes scores.
 #' @param ... Additional parameters that can be passed to plotting function
 #' @docType methods
+#' @return An invisible R list object with extraction slots (CF, PV, cfall...)
 #' @include extract_npas.R
 setMethod("plot",
           signature(x = "NPAList", y = "integer"),
           function(x, y=NULL, ...) plot.NPAList(x, y=NULL, ...))
 
+#' Plot the heatmap of the NPAList object
+#' @param x NPA R6 class instance
+#' @param type An integer value. Type of plot. If \code{type} is 1, default version
+#' showing a summary heatmap showing leading nodes scores for the different
+#' contrasts. If \code{type} is 2, a dynamic HTML/JavaScript page with network
+#' graph showing nodes scores.
+#' @param ... Additional parameters that can be passed to plotting function
+#' @return An invisible R list object with extraction slots (CF, PV, cfall...)
 plot.NPAList <- function(x, y=NULL, ...) {
   x$plot(y, ...)
 }
@@ -115,6 +124,7 @@ compute_npa_list <- function(comparisons, models,
 #' @exportMethod get_bif
 #' @param x NPAList R6 class instance
 #' @docType methods
+#' @return A BIF R6 class object.
 #' @examples 
 #' library(NPAModels)
 #' data(COPD1)
@@ -126,6 +136,9 @@ setGeneric("get_bif",
            def = function(x) standardGeneric("get_bif")
 )
 
+#' Compute the BIF object on a NPAList
+#' @param x NPAList R6 class instance
+#' @return A BIF R6 class object.
 setMethod("get_bif", c(x = "R6"), function(x) {
   x$get_bif()
 })

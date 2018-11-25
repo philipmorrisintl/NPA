@@ -12,6 +12,7 @@
 #' @param dist.only A logical. Only the distance matrix or the full set of results will be returned.
 #' @param nets A string vector. Network family names to be used.
 #' @param ... Additional optional arguments to be passed. Not used yet.
+#' @return A list object with computed distances on L1-norm, leading node contributions.
 #'
 getBIFdist <- function(npall, which = 1:length(npall[[1]]$coefficients), names.arg = names(npall[[1]]$coefficients),
     lev = 0.05, dist.only = FALSE, nets = factor(getNets(names(npall))$nets), type = c("relative",

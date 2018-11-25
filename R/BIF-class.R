@@ -44,13 +44,14 @@ BIF$set("public", "print", function(...) {
 #==============================================================================
 # Method: as.matrix
 #==============================================================================
-#' Generate a BIF results matrix showing different computed metrics
+#' Generates a BIF results matrix showing different computed metrics.
 #' @exportMethod as.matrix
 #' @param x BIF R6 class instance
 #' @param family String, network family name. If not provided, the BIF metrics are given for network famililies,
 #' if a familiy is specified, metrics for the networks are given.
 #' @param type String, metric type in `rbif`, `r2`, `contrib` and `coefficients`
 #' @docType methods
+#' @return A numerical matrix with BIF metrics.
 setMethod("as.matrix",
           signature(x = "BIF"),
           function(x, ...) {
@@ -64,6 +65,12 @@ setMethod("as.matrix",
             as.matrix.BIF(x, family = arguments$family, type = arguments$type)
           })
 
+#' Generates a BIF results matrix showing different computed metrics.
+#' @param x BIF R6 class instance
+#' @param family String, network family name. If not provided, the BIF metrics are given for network famililies,
+#' if a familiy is specified, metrics for the networks are given.
+#' @param type String, metric type in `rbif`, `r2`, `contrib` and `coefficients`
+#' @return A numerical matrix with BIF metrics.
 as.matrix.BIF <- function(x, family, type) {
   x$as.matrix(family, type)
 }

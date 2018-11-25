@@ -15,6 +15,8 @@
 #' @importFrom methods as
 #' @include getNPALE.R
 #' @include colorscale.R
+#' @return A list with each modeule community and global module. In each slot,
+#' graph object, vshape, layout and colors are provided.
 
 
 getNPAmodules <- function(np){
@@ -90,6 +92,8 @@ getNPAmodules <- function(np){
 #' @include getsplit.R
 #' @include imageplot_gg.R
 #' @include visNet2.R
+#' @return Either a NULL value if `heatmap` type is used or an invisible list object with
+#' communities matrix and community names if `graph` type is used.
 #' 
 plotNPAmodules <-function(npmodules, type=c("graph", "heatmap"), titleSuffix = ""){
     np <- attr(npmodules,"npa")

@@ -41,6 +41,8 @@
 #' @param border.color. A character vector. Color for starplot sector border.
 #' @param cst.border A numerical value. Starplot sector text size positioning adjustment.
 #' @param ... Additional aguments to be passed to plot function
+#' @return A list object with starplot sectors radius, colors, relative bif values,
+#' generated abreviations, network contributions and BIF deltas.
 #'
 #' @importFrom plotrix arctext
 #' @importFrom graphics pie

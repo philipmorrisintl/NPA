@@ -24,6 +24,7 @@
 #' @param BW A logical. Default is \code{FALSE}, colored version will be drawn
 #' rather than grayscale (for printing).
 #' @param ... Additional parameters to be passed to barplotNPA function
+#' @return A NULL value. This function does only the potting.
 #' @importFrom grDevices dev.cur
 #' @importFrom graphics layout
 #' @importFrom stats ecdf
@@ -159,6 +160,7 @@ barplotNPA3 <- function(np, type=1, bg = "grey90", mar = 8, main = "NPA", maxLN 
         }
         text(rep(0.5, length(tmp)), seq(0, 1, length.out = length(tmp)), words, col = rev(coltmp),
              cex = size)
+        return(NULL)
         }
     }
 }

@@ -18,7 +18,7 @@ setMethod("plot",
 #' @param type An character vector. Type of plot. If \code{type} is "heatmap", default version
 #' showing a summary heatmap with leading nodes scores for the different
 #' comparisons. If \code{type} is "graph", a graph is ploted showing the network and node scores barplots in nodes.
-#' If \code{type} is "drawjs", a dynamic HTML/JavaScript page with network
+#' If \code{type} is "graphjs", a dynamic HTML/JavaScript page with network
 #' graph showing nodes scores.
 #' @param ... Additional parameters that can be passed to plotting function.
 #' @docType methods
@@ -27,6 +27,8 @@ setMethod("plot",
 #' @include drawNPAmodule.R
 #' @rdname plot.NPA
 #' @method plot NPA
+#' @return An invisible object, output of `heatmapNPA` function if `heatmap` type is used,
+#' output of `drawNPAmodule` if `graph` is used, output of `drawNPAjs` for `graphjs` type.
 #' @export
 plot.NPA <- function(x, y="heatmap", ...) {
     x$plot(y, ...)
@@ -68,6 +70,8 @@ setMethod("plot",
 #' @include starplotBIFnetworks.R
 #' @rdname plot.BIF
 #' @method plot BIF
+#' @return Either a list object form `startplotBIFcontrasts`` function or NULL value
+#' if `starplotBIFnetworks`` is used.
 #' @export
 plot.BIF <- function(x, y="networks", ...) {
   x$plot(y, ...)
@@ -98,6 +102,7 @@ BIF$lock()
 #' @include NPA-class.R
 #' @rdname plot.NPAModules
 #' @method plot NPAModules
+#' @return An invisible object, output of `plotNPAmodulesGlobal`` function.
 #' @export
 plot.NPAModules <- function(
   x,

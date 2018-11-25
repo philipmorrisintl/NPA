@@ -12,7 +12,9 @@
 #' @param type A character vector. "single" for showing modules in a global graph or "multiple" to show communities.
 #' @param which.module A integer vector, indexes of selected modules. By default, `NULL` means all modules are used. 
 #' @param ...  Other arguments to be passed to drawNPAmodule function.
-#'
+#' @return An invisible list object with either communities and global modules output of
+#' `drawNPAmodule` function if type is set to `multiple` or a single invisible list object with the output
+#' of `drawNPAmodule` function.
 #' @include utils.R
 #' @include drawNPAmodule.R
 #' @importFrom igraph V

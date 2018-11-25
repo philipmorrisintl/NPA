@@ -19,6 +19,8 @@ NPA$unlock()
 #'
 #' @docType methods
 #' @include getNPALEtable2.R
+#' @return Either a numerical or a charcter vector matrix with NPA scores
+#' depending on `type` argument value.
 setMethod(
     "as.matrix",
     signature(x = "NPA"),
@@ -26,6 +28,14 @@ setMethod(
         as.matrix.NPA(x, type)
 )
 
+#' Generate a NPA results matrix showing ranked leading nodes,
+#' sign and statistics
+#' @param type a character vector. If `type` is set to "coefficients",
+#' a numeric matrix with NPA nodes coefficents for each comparison is returned.
+#' If `type` is set to "leadingnodes", a character matrix with leading nodes
+#' for each comparison is returned, showing rank for a given and additional
+#' information
+#' @return Either a numerical or a charcter vector matrix with NPA scores
 as.matrix.NPA <- function(x, type = c("coefficients", "leadingnodes")) {
     type <- match.arg(type)
     x$as.matrix(type)

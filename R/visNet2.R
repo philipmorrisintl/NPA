@@ -29,6 +29,7 @@
 #' @importFrom igraph V<-
 #' @importFrom grDevices dev.new
 #' @include colorscale.R
+#' @return A NULL value. This function does only plot the graph.
 #' 
 visNet2 <- function(
                     E, newpage=FALSE,
