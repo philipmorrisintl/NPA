@@ -35,6 +35,12 @@ NPA$unlock()
 #==============================================================================
 # Method: comparisons
 #==============================================================================
+#' Retrieve comparisons names used for NPA computation
+#' @param x NPA R6 class instance
+#' @return String vector. Comparisons names
+#' @examples 
+#' data(npa_example)
+#' comparisons(npa_example)
 setGeneric("comparisons",
            def = function(x) standardGeneric("comparisons")
            )
@@ -46,8 +52,8 @@ setGeneric("comparisons",
 #' @export
 #' @return String vector. Comparisons names
 #' @examples 
-#' data(npa)
-#' comparisons(npa)
+#' data(npa_example)
+#' comparisons(npa_example)
 setMethod("comparisons",
           signature(x = "R6"), function(x) {
     x$comparisons()
@@ -63,7 +69,7 @@ NPA$set("public", "comparisons", function() {
 #==============================================================================
 #' Retrieve NPA coefficients
 #' @exportMethod coefficients
-#' @param x NPA R6 class instance
+#' @param object NPA R6 class instance
 #' @param type Character vector, if set to `npa`, a numeric vector
 #' of the NPA values for each comparison is returned, if set to `nodes`, a matrix
 #' with NPA scores per network nodes (rows) for each comparison (columns).
@@ -71,8 +77,8 @@ NPA$set("public", "comparisons", function() {
 #' @docType methods
 #' @return Numeric vector or matrix depending on `type` argument value.
 #' @examples 
-#' data(npa)
-#' coefficients(npa)
+#' data(npa_example)
+#' coefficients(npa_example)
 
 setMethod("coefficients",
           signature(object = "R6"),
@@ -97,8 +103,20 @@ NPA$set("public", "coefficients", function(type = c("npa", "nodes")) {
 # Method: conf.int
 #==============================================================================
 #' Retrieve NPA confidence intervals
+#' @param object NPA R6 class instance
+#' @param ... Any argument to be passed to conf.int R6 method.
+#' @return Numeric vector or matrix depending on `type` argument value. See
+#' method documentation.
+#' @examples 
+#' data(npa_example)
+#' conf.int(npa_example)
+setGeneric("conf.int",
+           def = function(object, ...) standardGeneric("conf.int")
+)
+
+#' Retrieve NPA confidence intervals
 #' @exportMethod conf.int
-#' @param x NPA R6 class instance
+#' @param object NPA R6 class instance
 #' @param type Character vector. Returns a numeric matrix of confidence intervals
 #' values, with columns: `down` and `up` confidence values. If type is set to `npa`, the
 #' confidences values are given for each comparisons. If type is set to `nodes`,
@@ -107,12 +125,8 @@ NPA$set("public", "coefficients", function(type = c("npa", "nodes")) {
 #' @docType methods
 #' @return Numeric vector or matrix depending on `type` argument value.
 #' @examples 
-#' data(npa)
-#' conf.int(npa)
-setGeneric("conf.int",
-           def = function(object, ...) standardGeneric("conf.int")
-)
-
+#' data(npa_example)
+#' conf.int(npa_example)
 setMethod("conf.int",
           signature(object = "R6"),
           function(object, type = c("npa", "nodes")) {
@@ -143,7 +157,7 @@ NPA$set("public", "conf.int", function(type=c("npa", "nodes")) {
 #==============================================================================
 #' Returns a summary data.frame for a NPA object 
 #' @exportMethod summary
-#' @param x NPA R6 class instance
+#' @param object NPA R6 class instance
 #' @docType methods
 #' @return Numeric vector or matrix depending on `type` argument value.
 setMethod("summary", 
@@ -172,8 +186,20 @@ NPA$set("public", "summary", function() {
 # Method: modules
 #==============================================================================
 #' Compute sub-graphs for dense leading nodes regions.
+#' @param object NPA R6 class instance
+#' @param ... Additional arguments to be passed to `modules` R6 method.
+#' @include getNPAmodulesGlobal.R
+#' @return S3 class object that stores module data.
+#' @examples 
+#' data(npa_example)
+#' m <- modules(npa_example)
+setGeneric("modules",
+           def = function(object, ...) standardGeneric("modules")
+)
+
+#' Compute sub-graphs for dense leading nodes regions.
 #' @exportMethod modules
-#' @param x NPA R6 class instance
+#' @param object NPA R6 class instance
 #' @param alpha A numerical value, scale the negative score of the non leading
 #' nodes for dNetFind
 #' @param p A numerical value. Threshold value, for leading nodes detection.
@@ -181,12 +207,8 @@ NPA$set("public", "summary", function() {
 #' @include getNPAmodulesGlobal.R
 #' @return S3 class object that stores module data.
 #' @examples 
-#' data(npa)
-#' m <- modules(npa)
-setGeneric("modules",
-           def = function(object, ...) standardGeneric("modules")
-)
-
+#' data(npa_example)
+#' m <- modules(npa_example)
 setMethod("modules",
           signature(object = "R6"),
           function(object, alpha = 0, p = 0.8) {

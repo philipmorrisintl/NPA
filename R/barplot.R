@@ -9,7 +9,7 @@ NPA$unlock()
 #==============================================================================
 #' Generate a NPA barplot showing the NPA score per contrasts
 #' @exportMethod barplot
-#' @param x NPA R6 class instance.
+#' @param height NPA R6 class instance.
 #' @param type An integer value. Type of barplot. If \code{type} is 1, default version
 #' showing a simple barplot with "O.K." statistics. \code{type} = 2,
 #' wordclouds showing leading nodes are represented on the right side of the
@@ -25,7 +25,7 @@ setMethod("barplot",
           function(height, type=seq(1,4)[1], ...) barplot.NPA(height, type, ...))
 
 #' Generate a NPA barplot showing the NPA score per contrasts
-#' @param x NPA R6 class instance.
+#' @param height NPA R6 class instance.
 #' @param type An integer value. Type of barplot. If \code{type} is 1, default version
 #' showing a simple barplot with "O.K." statistics. \code{type} = 2,
 #' wordclouds showing leading nodes are represented on the right side of the
@@ -54,7 +54,7 @@ BIF$unlock()
 #==============================================================================
 #' Generate a BIF barplot
 #' @exportMethod barplot
-#' @param x BIF R6 class instance
+#' @param height BIF R6 class instance
 #' @param type An integer value. Type of barplot. If `type` is set to 1 (default type),
 #' pies are shown for each bar of the barplot. If `type` is set to 2, starplots are represented
 #' below the bars.
@@ -67,7 +67,7 @@ setMethod("barplot",
           function(height, type = seq(1, 2)[1], ...) barplot.BIF(height, type, ...))
 
 #' Generate a BIF barplot
-#' @param x BIF R6 class instance
+#' @param height BIF R6 class instance
 #' @param type An integer value. Type of barplot. If `type` is set to 1 (default type),
 #' pies are shown for each bar of the barplot. If `type` is set to 2, starplots are represented
 #' below the bars.

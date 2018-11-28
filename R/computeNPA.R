@@ -26,18 +26,18 @@ compute_npa <- function(comparisons, network_model, b = 500, verbose = FALSE) {
 
 #' Compute NPA scoring for a given dataset and model
 #'
-#' @param idmap A R list object. Contains data.frame for each contrast slots.
+#' @param dL A R list object. Contains data.frame for each comparison slots.
 #' @param model A R list object. Contains slot model with nodes and edges
 #' data.frame
 #' @param verbose A logical. Default is \code{TRUE}, messages are displayed in
 #' the console
+#' @param b An integer value. Number of permutations performed for bootstraping.
 #' @importFrom NPAModels getLQ
 #' @importFrom stats qnorm
 #' @importFrom stats pnorm
 #' @return A R list object containing the scoring metrics of the network
 #'
 #'
-
 computeNPA <- function(dL, model, verbose=FALSE, b=500) {
     alpha <- 0.95
     if (!"Qbackbone" %in% names(model)) {

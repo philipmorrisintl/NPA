@@ -12,11 +12,11 @@
 #' @param title.prefix A character vector for prefifing the title of the plot.
 #' @param names.arg  A string vector. Custom names for comparisons
 #' @param cex.main A numerical value. Text scaling factor for title.
-#' @param cex.network. A numerical value. Text scaling factor for network names.
+#' @param cex.network A numerical value. Text scaling factor for network names.
 #' @param BW A logical. If `TRUE`, grayscale colors are used. Defaul is `FALSE`.
 #' @param cst A numerical value. If provided, used for adjusting positioning of
 #' starplot/text
-#' @param border.color. A character vector. Color for starplot sector border.
+#' @param border.color A character vector. Color for starplot sector border.
 #' @param cst.border A numerical value. Starplot sector text size positioning adjustment.
 #' @param cex A numerical value. Scaling factor for points, lines.
 #' @return A NULL value. This function does only plot BIF per comparisons.

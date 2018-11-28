@@ -53,6 +53,8 @@
 #' relativly to the max NPA accross the contrasts.
 #' @param details A logical. If \code{TRUE}, additional information is
 #'displayed regarding the permutation tests.
+#' @param BW A logical. Default is `TRUE`, colored figure is generated
+#' If `FALSE` is used, grayscale is used.
 #' @param ... Optional additional parameter to be passed
 #' @importFrom graphics barplot.default
 #' @importFrom graphics grid

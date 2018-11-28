@@ -5,9 +5,21 @@
 
 NPA$unlock()
 
+
+#' Generate a NPA plot showing either a NPA summary heatmap or the network
+#' graph with NPA scores depending of the type of type of plot
+#' @param x NPA R6 class instance
+#' @param y NULL value, Y axis is not used.
+#' @param ... Additional parameters that can be passed to plotting function.
+#' @include drawNPAjs.R
+#' @include NPAheatmap.R
+#' @include drawNPAmodule.R
+#' @return An invisible object, output of `heatmapNPA` function if `heatmap` type is used,
+#' output of `drawNPAmodule` if `graph` is used, output of `drawNPAjs` for `graphjs` type.
+#' @export
 setMethod("plot",
-          signature(x = "NPA", y = "character"),
-          function(x, y=c('heatmap', 'graph', 'graphjs'), ...) plot.NPA(x, y, ...))
+          signature(x = "NPA"),
+          function(x, y=NULL, ...) plot.NPA(x, ...))
 
 #==============================================================================
 # Method: plot for NPA object
@@ -15,11 +27,6 @@ setMethod("plot",
 #' Generate a NPA plot showing either a NPA summary heatmap or the network
 #' graph with NPA scores depending of the type of type of plot
 #' @param x NPA R6 class instance
-#' @param type An character vector. Type of plot. If \code{type} is "heatmap", default version
-#' showing a summary heatmap with leading nodes scores for the different
-#' comparisons. If \code{type} is "graph", a graph is ploted showing the network and node scores barplots in nodes.
-#' If \code{type} is "graphjs", a dynamic HTML/JavaScript page with network
-#' graph showing nodes scores.
 #' @param ... Additional parameters that can be passed to plotting function.
 #' @docType methods
 #' @include drawNPAjs.R
@@ -30,8 +37,8 @@ setMethod("plot",
 #' @return An invisible object, output of `heatmapNPA` function if `heatmap` type is used,
 #' output of `drawNPAmodule` if `graph` is used, output of `drawNPAjs` for `graphjs` type.
 #' @export
-plot.NPA <- function(x, y="heatmap", ...) {
-    x$plot(y, ...)
+plot.NPA <- function(x, ...) {
+    x$plot(...)
 }
 
 NPA$set("public", "plot", function(type=c('heatmap', 'graph', 'graphjs'), ...) {
@@ -49,10 +56,22 @@ NPA$lock()
 
 
 BIF$unlock()
+#' Generate a NPA plot showing either a NPA summary heatmap or the network
+#' graph with NPA scores depending of the type of type of plot
+#' @param x NPA R6 class instance
+#' @param y NULL value, Y axis is not used.
+#' @param ... Additional parameters that can be passed to startplot functions (see
+#' startplotBIFcontrasts and starplotBIFnetworks for details).
+#' @include drawNPAjs.R
+#' @include NPAheatmap.R
+#' @include drawNPAmodule.R
+#' @return An invisible object, output of `heatmapNPA` function if `heatmap` type is used,
+#' output of `drawNPAmodule` if `graph` is used, output of `drawNPAjs` for `graphjs` type.
+#' @export
 setMethod("plot",
-          signature(x = "BIF", y = "character"),
-          function(x, y = "networks" , ...) {
-            plot.BIF(x, y = "networks", ...)
+          signature(x = "BIF"),
+          function(x, ...) {
+            plot.BIF(x, ...)
           })
 
 #===============================================================================
@@ -60,9 +79,6 @@ setMethod("plot",
 #===============================================================================
 #' Generate a BIF plot showing starplots per comparisons or per network families
 #' @param x BIF R6 class instance
-#' @param type An character vector. Type of plot. `type` is "network", default version
-#' showing network contributions for each comparison. If `type` is "comparisons", startplots
-#' figures of contributions of comparisons per network families is shown.
 #' @param ... Additional parameters that can be passed to startplot functions (see
 #' startplotBIFcontrasts and starplotBIFnetworks for details).
 #' @docType methods
@@ -70,11 +86,11 @@ setMethod("plot",
 #' @include starplotBIFnetworks.R
 #' @rdname plot.BIF
 #' @method plot BIF
-#' @return Either a list object form `startplotBIFcontrasts`` function or NULL value
-#' if `starplotBIFnetworks`` is used.
+#' @return Either a list object from `startplotBIFcontrasts`` function or NULL value
+#' if `starplotBIFnetworks` is used. This depends on `type` argument.
 #' @export
-plot.BIF <- function(x, y="networks", ...) {
-  x$plot(y, ...)
+plot.BIF <- function(x, ...) {
+  x$plot(...)
 }
 
 BIF$set("public", "plot", function(type="networks", ...) {
@@ -93,9 +109,6 @@ BIF$lock()
 #===============================================================================
 #' Plot NPA modules as a network graph
 #' @param x NPAModules S3 class object
-#' @param type An character vector. Type of plot. `type` is "network", default version
-#' showing network contributions for each comparison. If `type` is "comparisons", startplots
-#' figures of contributions of comparisons per network families is shown.
 #' @param ... Additional parameters that can be passed to plotNPAmodulesGlobal functions
 #' @docType methods
 #' @include plotNPAmodulesGlobal.R

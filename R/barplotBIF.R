@@ -16,7 +16,7 @@
 #' @param title.prefix A character vector, prefix string for title
 #' @param starplot A logical. TRUE means starplot will be displayed
 #' @param pie A logical. TRUE means pie will be displayed
-#' @param signed. A logical. TRUE means that signed BIF will be represented
+#' @param signed A logical. TRUE means that signed BIF will be represented
 #' @param cex.axis A numerical. Magnification of axis annotation relative to
 #' cex
 #' @param starplot.BW A logical for plotting a black and white starplot

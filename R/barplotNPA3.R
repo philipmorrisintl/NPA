@@ -23,6 +23,7 @@
 #' contributions
 #' @param BW A logical. Default is \code{FALSE}, colored version will be drawn
 #' rather than grayscale (for printing).
+#' @param cex.main A numerical value. Scaling factor for title text.
 #' @param ... Additional parameters to be passed to barplotNPA function
 #' @return A NULL value. This function does only the potting.
 #' @importFrom grDevices dev.cur

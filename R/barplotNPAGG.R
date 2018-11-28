@@ -26,8 +26,8 @@
 #' @importFrom grDevices rainbow
 #' @export
 #' @examples
-#'    data(npa) 
-#'    p <- barplotNPAGG(npa$get_data(), main="Barplot for NPA")
+#'    data(npa_example) 
+#'    p <- barplotNPAGG(npa_example$get_data(), main="Barplot for NPA")
 #'
 
 barplotNPAGG <- function(np,

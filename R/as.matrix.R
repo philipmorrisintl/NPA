@@ -30,6 +30,7 @@ setMethod(
 
 #' Generate a NPA results matrix showing ranked leading nodes,
 #' sign and statistics
+#' @param x NPA R6 class instance
 #' @param type a character vector. If `type` is set to "coefficients",
 #' a numeric matrix with NPA nodes coefficents for each comparison is returned.
 #' If `type` is set to "leadingnodes", a character matrix with leading nodes

@@ -80,6 +80,7 @@ Collate:
     'getNets1.R'
     'getNets2.R'
     'getWeightedBIF.R'
+    'npa_example.R'
     'onLoad.R'
     'plotNPAmodulesGlobal.R'
     'starplotBIFnetworks.R'

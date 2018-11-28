@@ -11,6 +11,9 @@
 #' @param col.leg A character vector, color legend.
 #' @param vertex.size A numerical, size vertex.
 #' @param vertex.label.dist A numerical, distance of label to node center.
+#' @param vertex.set A string vector. Names of vertex to be used.
+#' @param okonly A logical. If `TRUE`, only `O*K*` npas will be used.
+#' See vignette for `O*K*` definition.
 #' @param glayout A layout object for drawing graph.
 #' @param colbg.nodes A character vector, color background for the nodes.
 #' @param abbrev A logical. Should node name be shortened?

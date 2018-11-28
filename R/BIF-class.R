@@ -47,9 +47,7 @@ BIF$set("public", "print", function(...) {
 #' Generates a BIF results matrix showing different computed metrics.
 #' @exportMethod as.matrix
 #' @param x BIF R6 class instance
-#' @param family String, network family name. If not provided, the BIF metrics are given for network famililies,
-#' if a familiy is specified, metrics for the networks are given.
-#' @param type String, metric type in `rbif`, `r2`, `contrib` and `coefficients`
+#' @param ... Additional parameters to be passed to as.matrix.BIF S3 method
 #' @docType methods
 #' @return A numerical matrix with BIF metrics.
 setMethod("as.matrix",

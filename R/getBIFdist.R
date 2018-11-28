@@ -11,6 +11,7 @@
 #' @param lev A numerical value. Levels at which the "OK: stats are significant, default value is 0.05. 
 #' @param dist.only A logical. Only the distance matrix or the full set of results will be returned.
 #' @param nets A string vector. Network family names to be used.
+#' @param type A character vector. Type of BIF distance computed, default is `relative`.
 #' @param ... Additional optional arguments to be passed. Not used yet.
 #' @return A list object with computed distances on L1-norm, leading node contributions.
 #'

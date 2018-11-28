@@ -281,7 +281,7 @@ plot(m)
 For very large
 sub-graph, a clustered view can be obtained with `type` argument set to **multiple**.
 
-```{r eval=TRUE, echo=TRUE}
+```{r eval=TRUE, echo=TRUE, fig.height=10}
 # Showing the 3 first modules
 plot(m, type = "multiple", title = TRUE, which.module = seq(1:3))
 ```

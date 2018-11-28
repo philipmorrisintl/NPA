@@ -20,7 +20,7 @@
 #' @param cex.textnetwork A numerical value. Scaling of text of the network if `text.network` is `TRUE`.
 #' @param text.subnetwork A logical value. If `TRUE` and `text.network` argument is `TRUE`, subnetworks
 #' abreviation are drawn. Default is `TRUE`.
-#' @param cex.network. A numerical value. Text scaling factor for network names.
+#' @param cex.network A numerical value. Text scaling factor for network names.
 #' @param add.networks A logical. If `TRUE` (default), the network family color legend (and name is `text.network` is `TRUE`) is
 #' shown.
 #' @param title.prefix A character vector for prefifing the title of the plot if `add.legend` is `TRUE`.
@@ -38,7 +38,7 @@
 #' @param text.slice A string vector. Default is `NULL`, names from the bif object is used for networks text.
 #' @param cst A numerical value. If provided, used for adjusting positioning of
 #' starplot/text
-#' @param border.color. A character vector. Color for starplot sector border.
+#' @param border.color A character vector. Color for starplot sector border.
 #' @param cst.border A numerical value. Starplot sector text size positioning adjustment.
 #' @param ... Additional aguments to be passed to plot function
 #' @return A list object with starplot sectors radius, colors, relative bif values,

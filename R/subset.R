@@ -3,10 +3,19 @@
 ## Quai Jeanrenaud 5, 2000 Neuchatel, Switzerland
 #####################################################################
 
-# Subsetting NPA object with indices to retrive a NPA object with results for
-# the given contrasts indices
-#' @exportMethod subset
+
 setGeneric("subset")
+
+#' Subsetting NPA object with indices to retrive a NPA object with results for
+#' the given contrasts indices
+#' @param x A R6 class object, NPA or NPAList object
+#' @param indices A integer vector of indexes of comparisons (for NPA)
+#' or networks models (for a NPAList)
+#' @param other.indicies A integer vector. For a NPAList object,
+#' indexes for comparisons.
+#' @return A R6 class object, either a NPA or NPAList object subset.
+#' @exportMethod subset
+
 setMethod("subset", c(x = "R6"), function(x, indices, other.indicies=NULL) {
   x$subset(indices, other.indicies)
 })

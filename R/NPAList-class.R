@@ -56,28 +56,21 @@ NPAList$set("public", "print", function(...) {
 #' Plot the heatmap of the NPAList object
 #' @exportMethod plot
 #' @param x NPA R6 class instance
-#' @param type An integer value. Type of plot. If \code{type} is 1, default version
-#' showing a summary heatmap showing leading nodes scores for the different
-#' contrasts. If \code{type} is 2, a dynamic HTML/JavaScript page with network
-#' graph showing nodes scores.
-#' @param ... Additional parameters that can be passed to plotting function
+#' @param y NULL value. Y axis not used.
+#' @param ... Additional parameters that can be passed to `extractNPA2`` function
 #' @docType methods
 #' @return An invisible R list object with extraction slots (CF, PV, cfall...)
 #' @include extract_npas.R
 setMethod("plot",
-          signature(x = "NPAList", y = "integer"),
-          function(x, y=NULL, ...) plot.NPAList(x, y=NULL, ...))
+          signature(x = "NPAList"),
+          function(x, y, ...) plot.NPAList(x, ...))
 
 #' Plot the heatmap of the NPAList object
 #' @param x NPA R6 class instance
-#' @param type An integer value. Type of plot. If \code{type} is 1, default version
-#' showing a summary heatmap showing leading nodes scores for the different
-#' contrasts. If \code{type} is 2, a dynamic HTML/JavaScript page with network
-#' graph showing nodes scores.
 #' @param ... Additional parameters that can be passed to plotting function
 #' @return An invisible R list object with extraction slots (CF, PV, cfall...)
-plot.NPAList <- function(x, y=NULL, ...) {
-  x$plot(y, ...)
+plot.NPAList <- function(x, ...) {
+  x$plot(...)
 }
 
 NPAList$set("public", "plot", function(which=NULL, ...) {
