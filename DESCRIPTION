@@ -28,6 +28,7 @@ Imports:
     Rgraphviz,
     dnet,
     igraph,
+    supraHex,
     NPAModels
 Description: Scoring method of Biological Networks based on NPA (Network
     Perturbation Amplitude) algorithm. The methodology implemented enables
