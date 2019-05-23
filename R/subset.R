@@ -73,6 +73,17 @@ NPAList$set("public", "subset", function(indi, indj) {
     }
     data <- lapply(data, function(np) NPAsubset(np, indj))
   }
-  return(invisible(NPAList$new(data, private$species)))
+  if (length(indi) < 2) {
+    net_name <- self$networks()[indi]
+    npa <- private$data[[indi]]
+    npa_obj <- NPA$new(npa, NULL)
+    if (!is.null(indj)) {
+      return(npa_obj$subset(indj))  
+    } else {
+      return(npa_obj)
+    }
+    
+  }
+  return(NPAList$new(data, private$species))
 })
 NPAList$lock()

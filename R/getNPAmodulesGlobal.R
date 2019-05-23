@@ -37,7 +37,7 @@ getNPAmodulesGlobal <-function(np, alpha= 0, p = 0.8){
     gg <- as(getAdj(igraph::get.data.frame(g)[,1:2], symmetric = TRUE), "graphNEL")
     ## Bioconductor does not allow setting seed in the code
     ## Do it outside of the function call if needed.
-    # set.seed(467563)
+    #set.seed(467563)
     glay <- do.call(cbind,Rgraphviz::getNodeXY(Rgraphviz::agopen(gg,"") ))
     rownames(glay) <- graph::nodes(gg)
 
@@ -54,7 +54,9 @@ getNPAmodulesGlobal <-function(np, alpha= 0, p = 0.8){
     s <- rowSums(s)
     s[s==0] <- -max(s)*alpha
     mod <- dnet::dNetFind(g, s)
-    com <- igraph::cluster_infomap(igraph::as.undirected(mod))
+    #com <- igraph::cluster_infomap(igraph::as.undirected(mod))
+    com <- igraph::cluster_infomap(mod)
+    #com <- igraph::infomap.community(mod)
     modules <- vector("list", length(com))
     names(modules) <- paste("Module",1:length(com))
     for(h in 1:length(com)){

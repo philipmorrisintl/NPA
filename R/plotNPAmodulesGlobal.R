@@ -39,7 +39,7 @@ plotNPAmodulesGlobal <-function(npmodules, main ="", useLayout = FALSE, title = 
             if(names(npmodules)[which.module[k]]!= "Global"){
                 if(is.list(npmodules[[which.module[k]]])){
                     np0 <- np
-                    np0$model$g <- npmodules[[k]]$g
+                    np0$model$g <- npmodules[[which.module[k]]]$g
                     res[[k]] <- drawNPAmodule(np0, p = p,...)
                 }else{
                     gplots::textplot("NPA not *O*K*", col = "grey", cex =  1)

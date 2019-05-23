@@ -16,7 +16,7 @@
 NPA <- R6Class("NPA",
     private = list(
         data = NULL,
-        network = NA
+        network = NULL
     ),
     public = list(
         initialize = function(data, network) {

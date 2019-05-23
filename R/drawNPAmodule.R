@@ -41,7 +41,7 @@
 
 drawNPAmodule<- function (np, whichin = 1:length(np$coefficients), cex.leg = 1,
                           col.leg = "green3", vertex.size = 5, vertex.label.dist = NULL, vertex.set = NULL,
-                          glayout = "dot", colbg.nodes = "grey90",
+                          glayout = layout.fruchterman.reingold, colbg.nodes = "grey90",
                           okonly = TRUE, abbrev = TRUE, display.stat = TRUE, lwdHighlight=1,
                           colHighlight = "black", vertexHighlight = NULL, p = 0.8,
                           showSignif = FALSE, ...)
@@ -153,12 +153,13 @@ drawNPAmodule<- function (np, whichin = 1:length(np$coefficients), cex.leg = 1,
                    }
                })
     }
-    if (is(class(glayout), "function")) {
+    #if (is(class(glayout), "function")) {
+    if (!is.character(glayout)) {
         ## Bioconductor does not allow setting seed in the code
         ## Do it outside of the function call if needed.
         # set.seed(seed)
         edges <- igraph::E(g)
-        edges$weigths <- abs(edges$weight)
+        edges$weight <- abs(edges$weight)
         igraph::E(g) <- edges
         glayout <- glayout(g)
         rownames(glayout) = igraph::V(g)$name

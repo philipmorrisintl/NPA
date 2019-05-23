@@ -38,9 +38,13 @@ barplot.NPA <- function(height, type, ...) {
 }
 
 NPA$set("public", "barplot", function(type, ...) {
-    title <- paste0('NPA - ', private$network$get_name(), ' (', private$species, ')' )
+    if (!is.null(private$network)) {
+      title <- paste0('NPA - ', private$network$get_name())
+    } else {
+      title <- paste0('NPA score')
+    }
     if (type < 3) {
-      barplotNPA3(private$data, type=type, main=title, ...)
+      barplotNPA3(private$data, type=type, ...)
     } else {
       barplotNPAGG(private$data, ...)
     }

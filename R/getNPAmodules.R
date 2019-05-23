@@ -38,7 +38,8 @@ getNPAmodules <- function(np){
             s[! names(s) %in% LN[[j]]$leadingNodes[,"GeneId"]] <- -1
 
             mod <- dnet::dNetFind(g, s)
-            com <- igraph::cluster_infomap(mod, e.weight=abs(E(mod)$weight), modularity=FALSE)
+            #com <- igraph::cluster_infomap(mod, e.weight=abs(E(mod)$weight))
+            com <- igraph::infomap.community(mod)
             modules <- vector("list", length(com))
             names(modules) <- paste(names(np$coefficients)[j], "|| Module",1:length(com))
             for(h in 1:length(com)){

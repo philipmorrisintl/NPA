@@ -80,6 +80,28 @@ NPAList$set("public", "plot", function(which=NULL, ...) {
   return(invisible(extractNPA2(self$get_data(), which = which, plot = TRUE, ...)))
 })
 
+#==============================================================================
+# Method: networks
+#==============================================================================
+#' Retrieve names of networks for a NPAList object
+#' @exportMethod networks
+#' @param x NPAList R6 class instance
+#' @return String vector. Network names.
+setGeneric("networks",
+           def = function(x) standardGeneric("networks")
+           )
+
+#' Retrieve networkds names for a NPAList object
+#' @param x NPAList R6 class instance
+#' @docType methods
+#' @method networks NPAList
+#' @export
+#' @return String vector. Networks names
+setMethod("networks",
+          signature(x = "R6"), function(x) {
+    x$networks()
+})
+
 
 NPAList$lock()
 
