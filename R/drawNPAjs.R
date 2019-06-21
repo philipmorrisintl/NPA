@@ -67,7 +67,6 @@ drawNPAjs <- function(np, edges, pathout = getwd(), filename = NULL, which = NUL
         return(A)
     }
     # edges is now with -1, 1 direction, coming from model backbone slot
-    print(edges)
     a <- getSignedAdj(as.matrix(edges))
     if (nrow(np$nodes.coefficients) > 30) {
         opts$displayNetworkEveryNLayoutIterations <- 0
