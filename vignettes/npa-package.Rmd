@@ -233,10 +233,11 @@ barplot(npa, type = 3)
 
 ### **plot** function
 
-Two options are available for plotting an NPA object.
+Three options are available for plotting an NPA object.
 
 * type = "heatmap":Represents the network backbomne node differential values as a heatmap. Significant perturbation are displayed in a separate column panel while the leading nodes in at least one significant comparison are in a separate row panel.
 * type = "graph": Displays the network as a graph where nodes scores are overlaid.
+* type = "graphjs": Generates an interactive HTML/javascript page where nodes scores are overlaid.
 
 _Note: The heatmap figure can be big and may be more suitable for
 PDF pages generation._
@@ -256,7 +257,7 @@ plot(npa, type = 'graph')
 The _graphjs_ option generates a HTML/javascript interactive graph using the _RGraph2js_ package that can be accessed in a web browser.
 
 ```{r eval=FALSE}
-plot(npa, type = 'graphjs')
+plot(npa, type = 'graphjs', model = net.apopto)
 ```
 ![](npa-graph.png)
 

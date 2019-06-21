@@ -7,6 +7,7 @@
 #'
 #' @importFrom RGraph2js graph2js
 #' @param np A R list object. NPA scores results
+#' @param edges A matrix with 3 columns; from, direction (-1 or 1), to
 #' @param pathout A character vector. Folder path where to generated files
 #' @param filename A character vector. HTML filename containing the graph
 #' @param which A integer vector. Indexes of contrasts to use.
@@ -22,7 +23,7 @@
 #' @include getNPALE.R
 #' @include colorscale.R
 #'
-drawNPAjs <- function(np, pathout = getwd(), filename = NULL, which = NULL, open.in.browser = FALSE,
+drawNPAjs <- function(np, edges, pathout = getwd(), filename = NULL, which = NULL, open.in.browser = FALSE,
     text.nodes = NULL, opts = list(), ...) {
     if (!is.null(which)) {
         np <- NPAsubset(np, which)
@@ -65,11 +66,9 @@ drawNPAjs <- function(np, pathout = getwd(), filename = NULL, which = NULL, open
         A[abs(A) > 1] <- sign(A[abs(A) > 1])
         return(A)
     }
-    E <- as.matrix(np$model$model$edges[, c(2:4)])
-    E0 <- E
-    E0[, 2] <- "1"
-    E0[E[, 2] %in% c("=|", "-|"), 2] <- "-1"
-    a <- getSignedAdj(E0)
+    # edges is now with -1, 1 direction, coming from model backbone slot
+    print(edges)
+    a <- getSignedAdj(as.matrix(edges))
     if (nrow(np$nodes.coefficients) > 30) {
         opts$displayNetworkEveryNLayoutIterations <- 0
     }

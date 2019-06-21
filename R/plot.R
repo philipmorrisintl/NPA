@@ -36,19 +36,23 @@ setMethod("plot",
 #' @method plot NPA
 #' @return An invisible object, output of `heatmapNPA` function if `heatmap` type is used,
 #' output of `drawNPAmodule` if `graph` is used, output of `drawNPAjs` for `graphjs` type.
+#' If `graphjs` type is used, the `NPAModel` instance has to be provided as `model` argument.
 #' @export
 plot.NPA <- function(x, ...) {
     x$plot(...)
 }
 
-NPA$set("public", "plot", function(type=c('heatmap', 'graph', 'graphjs'), ...) {
+NPA$set("public", "plot", function(type=c('heatmap', 'graph', 'graphjs'), model = NULL, ...) {
     type <- match.arg(type)
     if (type=='heatmap') {
         return(invisible(heatmapNPA(private$data, ...)))
     } else if (type == 'graph') {
       return(invisible(drawNPAmodule(private$data, ...)))
     } else {
-      return(invisible(drawNPAjs(private$data, ...)))
+      if (is.null(model)) {
+        stop('NPA model has to be provided with model argument')
+      }
+      return(invisible(drawNPAjs(private$data, model$get_data()$backbone, ...)))
     }
 })
 
