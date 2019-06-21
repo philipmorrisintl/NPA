@@ -22,7 +22,7 @@ Colors <- function(n, name="Spectral") {
 #'
 solve2 <- function(M) {
     Minv <- try(solve(M), silent = TRUE)
-    if (is(class(Minv), "try-error")) {
+    if (inherits(Minv, "try-error")) {
         svM <- svd(M)
         lambdainv <- rep(0, length(svM$d))
         lambdainv[abs(svM$d) > 1e-13] <- 1/svM$d[abs(svM$d) > 1e-13]
