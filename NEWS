@@ -4,4 +4,5 @@
 #####################################################################
 
 0.99.0 Sylvain Gubian  <DL.RSupport@pmi.com>
-    *Initial Bioconductor version of the NPA package
+    * Initial Bioconductor version of the NPA package
+    * 20200318 - Fixed uppercase for L3invtL2 and L2 matrices to support scpecies specific cases in downstreams genes
