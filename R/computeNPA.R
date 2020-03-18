@@ -12,12 +12,12 @@
 #'
 #' @return A R6 class NPA object
 #' @export
-#' @examples 
+#' @examples
 #' library(NPAModels)
 #' data(COPD1)
 #' #net.apopto <- load_model('Mm', 'CFA', 'Apoptosis')
 #' #npa <- compute_npa(COPD1, net.apopto, verbose = TRUE)
-#' 
+#'
 compute_npa <- function(comparisons, network_model, b = 500, verbose = FALSE) {
   np <- computeNPA(comparisons, network_model$get_data(), b = b, verbose = verbose)
   return(NPA$new(np, network_model))
@@ -53,7 +53,9 @@ computeNPA <- function(dL, model, verbose=FALSE, b=500) {
     }
     Qbackbone <- model$Qbackbone
     L3invtL2 <- model$L3invtL2
+    colnames(L3invtL2) <- toupper(colnames(L3invtL2))
     L2 <- model$L2
+    rownames(L2) <- toupper(rownames(L2))
     L3 <- model$L3
     if (verbose) {
        message("Preparing data...")
@@ -87,6 +89,7 @@ computeNPA <- function(dL, model, verbose=FALSE, b=500) {
     }
     Y <- sapply(dL, function(X) X$foldChange)
     V <- sapply(dL, function(G) {
+        # Here s[G$t == 0] <- 0 should be done before s <- G$foldChange/G$t
         s <- G$foldChange/G$t
         s[G$t == 0] <- 0
         return(s) })^2  #Variance
@@ -101,7 +104,7 @@ computeNPA <- function(dL, model, verbose=FALSE, b=500) {
         stop("Some gene symbols are apperaring several times in the data!")
     }
     # Keep only gene in model
-    gene <- toupper(colnames(L3invtL2))
+    gene <- colnames(L3invtL2)
     Y <- Y[rownames(Y) %in% gene, ]
     V <- V[rownames(V) %in% gene, ]
     V[is.na(V)] <- 0
@@ -116,10 +119,10 @@ computeNPA <- function(dL, model, verbose=FALSE, b=500) {
     }
     Y <- Y[match(colnames(L3invtL2), rownames(Y)), ]
     V <- V[match(colnames(L3invtL2), rownames(V)), ]
-    if (!all(rownames(Y) == toupper(colnames(L3invtL2)))) {
+    if (!all(rownames(Y) == colnames(L3invtL2))) {
         stop("rownames Y and L3invtL2 do not match..")
     }
-    if (!all(rownames(Y) == toupper(rownames(L2)))) {
+    if (!all(rownames(Y) == rownames(L2))) {
         stop("rownames Y and L2 do not match..")
     }
     Var.fhat <- vector("list", ncol(Y))
