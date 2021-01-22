@@ -214,6 +214,7 @@ The _graphjs_ option generates a HTML/javascript interactive graph using the _RG
 ```
 plot(npa, type = 'graphjs', model = net.apopto)
 ```
+![](vignettes/npa-graph.png)
 
 ## NPA modules
 
